@@ -739,19 +739,17 @@ function bgStopFor() {
   if (on !== bgOn) { bgOn = on; document.body.classList.toggle('bg-on', on && bgReady); }
   if (inside !== bgFull) { bgFull = inside; document.body.classList.toggle('bg-full', inside && bgReady); }
   /* Anchors, in viewport-relative terms (0 = "now"): a section ARRIVES at its stop
-     when its top reaches mid-viewport, HOLDS that pose while the visitor reads it,
-     then, in the seam before the next section, transforms into the
-     next stop across the scroll that brings the next section's top to mid. The
-     Studio section is the first pose, the resting ring, at 0. */
+     when its top reaches mid-viewport, HOLDS that pose for the first 35% of the
+     scroll to the next section, then transforms EVENLY across the remaining 65%,
+     so every flick moves the film by the same small amount and nothing ever
+     jumps. The Studio section is the first pose, the resting ring, at 0. */
   if (!n) return 0;
-  var pts = [], sb = studio ? studio.getBoundingClientRect().bottom : y0;
-  pts.push([y0 - mid, 0], [Math.max(y0 - mid + 1, sb - vh * 0.72), 0]);
-  for (i = 0; i < n; i++) {
-    /* hold until the section's bottom is 72% up the screen: the pose stands for the
-       whole read, and the change happens in the seam before the next section */
-    var r = bgZones[i].el.getBoundingClientRect(), a = r.top - mid, h = Math.max(a + 1, r.bottom - vh * 0.72);
-    if (i + 1 < n) h = Math.min(h, ys[i + 1] - mid - 1);
-    pts.push([a, bgZones[i].t], [h, bgZones[i].t]);
+  var HOLD = 0.35, pts = [], arr = [y0 - mid], k;
+  for (i = 0; i < n; i++) arr.push(ys[i] - mid);
+  arr.push(arr[arr.length - 1] + vh);            /* a virtual end so the last pose has a span too */
+  for (k = 0; k < arr.length - 1; k++) {
+    var tk = k === 0 ? 0 : bgZones[k - 1].t;
+    pts.push([arr[k], tk], [arr[k] + HOLD * Math.max(1, arr[k + 1] - arr[k]), tk]);
   }
   /* the current scroll position is 0 on this axis: find the span it falls in */
   if (0 <= pts[0][0]) return 0;
@@ -769,7 +767,7 @@ function bgDrive() {
 }
 function bgTick(now) {
   var dt = Math.min(100, now - (bgLast || now)); bgLast = now;
-  bgShown += (bgTarget - bgShown) * (1 - Math.pow(1 - 0.16, dt / 16.667));
+  bgShown += (bgTarget - bgShown) * (1 - Math.pow(1 - 0.11, dt / 16.667));   /* a softer glide than the hero's */
   var settled = Math.abs(bgTarget - bgShown) < 0.004;
   if (settled) { bgShown = bgTarget; bgRaf = null; bgLast = 0; }
   else bgRaf = requestAnimationFrame(bgTick);
