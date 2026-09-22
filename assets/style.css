@@ -239,11 +239,9 @@ a{color:inherit}
 .static-hero .band-cta{margin-top:24px}
 
 /* THE FIVE STATIC-HERO GATES. Identical, character for character, to GATES in app.js. */
+/* the still hero: only for a visitor's own reduced-motion setting (phones and
+   tablets scrub like the desktop, identical to the GATES list in app.js) */
 @media
-  (max-width: 720px),
-  (orientation: portrait) and (max-width: 1024px),
-  (orientation: portrait) and (pointer: coarse),
-  (orientation: landscape) and (pointer: coarse) and (max-height: 560px),
   (prefers-reduced-motion: reduce)
 {
   .hero{height:100svh;min-height:600px}
@@ -602,7 +600,8 @@ body.paused .gpanel::before{animation-play-state:paused}
 .bg-film{position:fixed;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none}
 .bg-canvas{position:fixed;inset:0;z-index:0;width:100%;height:100%;opacity:0;pointer-events:none;transition:opacity 1.4s var(--ease);
   -webkit-mask-image:radial-gradient(ellipse 96% 92% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 96% 92% at 50% 50%,#000 60%,transparent 100%)}
-body.bg-on .bg-canvas{opacity:1}
+body.bg-on .bg-canvas{opacity:.55}
+body.bg-full .bg-canvas{opacity:1}
 .sec--film{background:linear-gradient(180deg,rgba(182,186,193,0),rgba(182,186,193,.55) 14%,rgba(182,186,193,.55) 86%,rgba(182,186,193,0))}
 
 
@@ -666,18 +665,13 @@ body.bg-on .bg-canvas{opacity:1}
 @media (max-width:1100px){.clock{top:clamp(110px,18vh,190px)}}
 @media (max-height:700px){.clock{top:96px;padding-top:12px;padding-bottom:10px}.clock-loc{margin-top:6px}.clock-track{margin-top:8px}}
 /* the still hero on phones: the clock stays, compact, above the words */
-@media
-  (max-width: 720px),
-  (orientation: portrait) and (max-width: 1024px),
-  (orientation: portrait) and (pointer: coarse),
-  (orientation: landscape) and (pointer: coarse) and (max-height: 560px),
-  (prefers-reduced-motion: reduce)
-{
-  .clock{left:var(--gut);right:var(--gut);width:auto;max-width:none;top:84px;padding:12px 16px 10px;border-radius:18px;--co:1 !important;transform:none !important;pointer-events:none}
+@media (max-width: 720px), (orientation: portrait) and (max-width: 1024px){
+  .clock{left:var(--gut);right:var(--gut);width:auto;max-width:none;top:84px;padding:12px 16px 10px;border-radius:18px}
   .clock-t{font-size:clamp(26px,7.6vw,40px)}
   .clock-k{font-size:9.5px;margin-bottom:4px}
   .clock-loc{font-size:9.5px;margin-top:6px}
 }
+@media (prefers-reduced-motion: reduce){.clock{--co:1 !important;transform:none !important;pointer-events:none}}
 @media (prefers-reduced-motion: reduce){.clock{animation:none}}
 
 /* the footer: every line on its own glass chip, so nothing melts into the film */

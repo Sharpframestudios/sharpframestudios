@@ -337,6 +337,7 @@ function loadHeroBlob() {
             }
             video.addEventListener('canplay', heroArm);
             video.addEventListener('loadeddata', heroArm);
+            if (coarse.matches) { var pp = video.play(); if (pp && pp.then) pp.then(function () { video.pause(); onScroll(); }).catch(function () {}); }
             resolve(); return;
           }
           clearTimeout(watchdog); watchdog = setTimeout(function () { ctrl.abort(); }, 20000);
@@ -357,13 +358,11 @@ function failVideo() {
 }
 
 /* ============================================================
-   6. THE FIVE STATIC-HERO GATES (identical to style.css)
+   6. THE STATIC-HERO GATE (identical to style.css). Phones and tablets get
+   the scrub and the film like the desktop, on Adrian's decision; only a
+   visitor's own reduced-motion setting gets the still hero.
    ============================================================ */
 var GATES = [
-  '(max-width: 720px)',
-  '(orientation: portrait) and (max-width: 1024px)',
-  '(orientation: portrait) and (pointer: coarse)',
-  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
   '(prefers-reduced-motion: reduce)'
 ];
 var MQLS = GATES.map(function (q) { return matchMedia(q); });
@@ -700,7 +699,10 @@ function initBgFilm() {
   window.addEventListener('resize', function () { bgSize(); bgKick(); }, { passive: true });
   bgV.addEventListener('seeked', function () { clearTimeout(bgSeekWatch); bgSeekBusy = false; bgDirty = true; bgKick(); if (bgPending !== null) { var t = bgPending; bgPending = null; bgSeek(t); } });
   bgV.addEventListener('error', function () { bgSeekBusy = false; bgPending = null; if (bgV) { bgV.remove(); bgV = null; } if (bgC) { bgC.remove(); bgC = null; } document.body.classList.remove('bg-on'); });
-  function bgArm() { if (bgReady || !bgV) return; bgReady = true; bgOn = null; bgV.pause(); bgDirty = true; bgKick(); bgDrive(); }
+  function bgArm() {
+    if (bgReady || !bgV) return; bgReady = true; bgOn = null; bgFull = null; bgV.pause(); bgDirty = true; bgKick(); bgDrive();
+    if (coarse.matches) { var pp = bgV.play(); if (pp && pp.then) pp.then(function () { bgV.pause(); bgDirty = true; bgKick(); bgDrive(); }).catch(function () {}); }
+  }
   bgV.addEventListener('loadeddata', bgArm);
   bgV.addEventListener('canplay', bgArm);
 }
@@ -727,13 +729,15 @@ function startBgFetch() {
    the film runs from 0 under the portrait, and between anchors it interpolates,
    so scrolling back plays it back. The picture follows with a dt-normalised
    lerp and gated seeks, exactly the hero's loop. */
-var bgOn = null, bgTarget = 0, bgShown = 0, bgLast = 0;
+var bgOn = null, bgFull = null, bgTarget = 0, bgShown = 0, bgLast = 0;
 function bgStopFor() {
-  var mid = window.innerHeight * 0.5, inside = false, n = bgZones.length, i;
+  var vh = window.innerHeight, mid = vh * 0.5, inside = false, n = bgZones.length, i;
   var studio = $('#studio'), y0 = studio ? studio.getBoundingClientRect().top : -Infinity;
   var ys = new Array(n);
-  for (i = 0; i < n; i++) { ys[i] = bgZones[i].el.getBoundingClientRect().top; if (ys[i] <= mid) inside = true; }
-  if (inside !== bgOn) { bgOn = inside; document.body.classList.toggle('bg-on', inside && bgReady); }
+  for (i = 0; i < n; i++) { ys[i] = bgZones[i].el.getBoundingClientRect().top; if (ys[i] <= mid + 1) inside = true; }
+  var on = y0 <= vh * 0.9;   /* the Studio section is coming up: the resting ring shows faintly */
+  if (on !== bgOn) { bgOn = on; document.body.classList.toggle('bg-on', on && bgReady); }
+  if (inside !== bgFull) { bgFull = inside; document.body.classList.toggle('bg-full', inside && bgReady); }
   /* anchors: (y0, 0), (ys[i], t[i]); find the span mid sits in */
   if (!n || mid <= y0) return 0;
   if (mid >= ys[n - 1]) return bgZones[n - 1].t;
