@@ -206,11 +206,12 @@ function updateCaptions(p) {
     var ramp = b.ramp || Math.min(0.03, (b.b - b.a) * 0.35);
     var k = clamp((p - b.a) / ramp, 0, 1);
     if (b.first) k = Math.max(k, loadK);
-    if (Math.abs(k - b.k) > 0.008) {
-      b.k = k;
-      b.el.style.setProperty('--k', k.toFixed(3));
-      for (var j = 0; j < b.dcs.length; j++) decodeSet(b.dcs[j], op > 0.02 ? k : 0);
-      if (b.last) arcDecode(op > 0.02 ? k : 0);
+    var kk = op > 0.02 ? k : 0;   /* what the letters get: scrambled while the band is hidden */
+    if (Math.abs(kk - b.k) > 0.008) {
+      b.k = kk;
+      b.el.style.setProperty('--k', kk.toFixed(3));
+      for (var j = 0; j < b.dcs.length; j++) decodeSet(b.dcs[j], kk);
+      if (b.last) arcDecode(kk);
     }
   }
   setClockFade(p);
@@ -514,6 +515,49 @@ players.forEach(function (p) {
     p._io.observe(p);
   }
 });
+
+/* ============================================================
+   THE WHEEL. The browser eases every notch of a mouse wheel and a trackpad
+   keeps coasting after the fingers lift; at the end of each move the scrub
+   crawls at a few frames a second, which reads as stutter. Adrian's call:
+   take the wheel over. The page follows the wheel with one short, dt-normalised
+   glide of its own (no long tail), and a run of shrinking momentum events is
+   cut off within a few frames so the picture stops instead of trickling.
+   Touch, keyboard, the scrollbar and reduced-motion visitors stay native.
+   ============================================================ */
+(function () {
+  if (coarse.matches || rmq.matches) return;
+  var goal = null, raf = null, last = 0, lastSet = -1, lastAbs = 0, lastAt = 0, lastSign = 0, run = 0;
+  function maxY() { return Math.max(0, document.documentElement.scrollHeight - window.innerHeight); }
+  function step(now) {
+    raf = null;
+    if (goal === null) return;
+    var cur = window.scrollY;
+    if (lastSet >= 0 && Math.abs(cur - lastSet) > 2) { goal = null; return; }   /* something else scrolled: let go */
+    var dt = Math.min(64, now - (last || now)); last = now;
+    var next = cur + (goal - cur) * (1 - Math.pow(1 - 0.2, dt / 16.667));
+    if (Math.abs(goal - next) < 0.6) { next = goal; goal = null; }
+    lastSet = Math.round(next);
+    window.scrollTo({ top: next, left: window.scrollX, behavior: 'instant' });
+    if (goal !== null) raf = requestAnimationFrame(step);
+  }
+  window.addEventListener('wheel', function (e) {
+    if (e.ctrlKey || e.metaKey || e.defaultPrevented || e.deltaX && Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    var d = e.deltaY;
+    if (e.deltaMode === 1) d *= 16; else if (e.deltaMode === 2) d *= window.innerHeight;
+    if (!d) return;
+    e.preventDefault();
+    var now = performance.now(), abs = Math.abs(d), sign = d > 0 ? 1 : -1;
+    /* a momentum tail: same direction, each event smaller than the last, no pause between them */
+    run = (now - lastAt < 90 && sign === lastSign && abs < lastAbs && abs < 40) ? run + 1 : 0;
+    lastAbs = abs; lastAt = now; lastSign = sign;
+    var scale = run === 0 ? 1 : Math.max(0, 1 - run / 4);
+    if (scale <= 0) return;
+    if (goal === null) { goal = window.scrollY; lastSet = -1; last = 0; }
+    goal = clamp(goal + d * scale, 0, maxY());
+    if (raf === null) raf = requestAnimationFrame(step);
+  }, { passive: false });
+})();
 
 /* ============================================================
    11. THE VIEWFINDER'S SECTION READOUT + NAV
