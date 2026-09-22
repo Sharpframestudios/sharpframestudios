@@ -393,6 +393,13 @@ a{color:inherit}
    ( 07 ) PROOF
    ============================================================ */
 .sec--quote{padding-top:clamp(64px,7vw,104px)}
+/* ( 07 ) PROOF: the Blu Kouzina night photo lives INSIDE the crystal box, as its
+   own backdrop: the picture fills the box, a frost layer sits on it, the words on top. */
+.quote{overflow:hidden;background:none}
+.quote-photo{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;pointer-events:none}
+.quote-frost{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(160deg,rgba(255,255,255,.58),rgba(255,255,255,.4));backdrop-filter:blur(5px) saturate(1.25);-webkit-backdrop-filter:blur(5px) saturate(1.25)}
+.quote>.tag,.quote>blockquote,.quote>figcaption{position:relative;z-index:1}
+.quote .tag{background:rgba(255,255,255,.85)}
 .quote{margin:0;text-align:center}
 .quote .tag{display:inline-block;margin-bottom:26px}
 .quote blockquote{margin:0}
@@ -580,6 +587,25 @@ body.paused .lift{animation-play-state:paused}
   animation:beam 4.2s linear infinite}
 @keyframes beam{to{--beam:360deg}}
 body.paused .gpanel::before{animation-play-state:paused}
+/* the same beam on every box on the page: glass panels, cards, plans, steps,
+   questions, the players, the devices, the footer chips. Only the sections
+   on screen run theirs; the rest sit still. Staggered so they never march in step. */
+.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy{position:relative}
+.glass::before,.sec-head::before,.quote::before,.start-side::before,.player::before,.device::before,.chip::before,.studio-copy::before{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1.6px;pointer-events:none;z-index:2;
+  background:conic-gradient(from var(--beam),transparent 0 58%,rgba(43,123,255,0) 66%,#5FB0FF 82%,#FFFFFF 88%,#2B7BFF 95%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+  filter:drop-shadow(0 0 5px rgba(43,123,255,.9));
+  animation:beam 4.2s linear infinite}
+.glass::before,.player::before{inset:0}
+.chip::before{padding:1.3px;filter:drop-shadow(0 0 4px rgba(43,123,255,.8))}
+.focus-panel::before{background:none;-webkit-mask:none;mask:none;filter:none;animation:none;padding:0}
+:is(.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy):nth-child(2)::before{animation-delay:-1.4s}
+:is(.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy):nth-child(3)::before{animation-delay:-2.8s}
+:is(.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy):nth-child(4)::before{animation-delay:-0.7s}
+:is(.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy):nth-child(5)::before{animation-delay:-2.1s}
+:is(.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy):nth-child(6)::before{animation-delay:-3.5s}
+.sec:not(.alive) :is(.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy)::before,.foot:not(.alive) .chip::before,body.paused :is(.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy)::before{animation-play-state:paused}
 
 /* the arc: the studio's name bent around the resting lens */
 .arc{position:absolute;inset:0;width:100%;height:100%;overflow:visible}

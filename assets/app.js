@@ -738,16 +738,30 @@ function bgStopFor() {
   var on = y0 <= vh * 0.9;   /* the Studio section is coming up: the resting ring shows faintly */
   if (on !== bgOn) { bgOn = on; document.body.classList.toggle('bg-on', on && bgReady); }
   if (inside !== bgFull) { bgFull = inside; document.body.classList.toggle('bg-full', inside && bgReady); }
-  /* anchors: (y0, 0), (ys[i], t[i]); find the span mid sits in */
-  if (!n || mid <= y0) return 0;
-  if (mid >= ys[n - 1]) return bgZones[n - 1].t;
-  var pa = y0, ta = 0;
+  /* Anchors, in viewport-relative terms (0 = "now"): a section ARRIVES at its stop
+     when its top reaches mid-viewport, HOLDS that pose while the visitor reads it,
+     then, in the seam before the next section, transforms into the
+     next stop across the scroll that brings the next section's top to mid. The
+     Studio section is the first pose, the resting ring, at 0. */
+  if (!n) return 0;
+  var pts = [], sb = studio ? studio.getBoundingClientRect().bottom : y0;
+  pts.push([y0 - mid, 0], [Math.max(y0 - mid + 1, sb - vh * 0.72), 0]);
   for (i = 0; i < n; i++) {
-    if (mid < ys[i]) { var span = ys[i] - pa; return span > 1 ? ta + (bgZones[i].t - ta) * ((mid - pa) / span) : bgZones[i].t; }
-    pa = ys[i]; ta = bgZones[i].t;
+    /* hold until the section's bottom is 72% up the screen: the pose stands for the
+       whole read, and the change happens in the seam before the next section */
+    var r = bgZones[i].el.getBoundingClientRect(), a = r.top - mid, h = Math.max(a + 1, r.bottom - vh * 0.72);
+    if (i + 1 < n) h = Math.min(h, ys[i + 1] - mid - 1);
+    pts.push([a, bgZones[i].t], [h, bgZones[i].t]);
   }
-  return ta;
+  /* the current scroll position is 0 on this axis: find the span it falls in */
+  if (0 <= pts[0][0]) return 0;
+  if (0 >= pts[pts.length - 1][0]) return pts[pts.length - 1][1];
+  for (i = 1; i < pts.length; i++) {
+    if (0 < pts[i][0]) { var span = pts[i][0] - pts[i - 1][0]; return span > 1 ? pts[i - 1][1] + (pts[i][1] - pts[i - 1][1]) * ((0 - pts[i - 1][0]) / span) : pts[i][1]; }
+  }
+  return pts[pts.length - 1][1];
 }
+window.__sfsBgTarget = bgStopFor;   /* read by the review harness only */
 function bgDrive() {
   if (!bgV || !bgReady || !bgV.duration) return;
   bgTarget = Math.min(bgStopFor(), bgV.duration - 0.05);
