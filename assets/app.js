@@ -127,13 +127,15 @@ var SVGNS = 'http://www.w3.org/2000/svg';
 function buildGlass(b, i) {
   var wrap = document.createElement('div'); wrap.className = 'gwrap';
   var panel = document.createElement('div'); panel.className = 'gpanel';
-  var svg = document.createElementNS(SVGNS, 'svg'); svg.setAttribute('class', 'gshards off'); svg.setAttribute('preserveAspectRatio', 'none'); svg.setAttribute('aria-hidden', 'true');
-  wrap.appendChild(panel); wrap.appendChild(svg);
+  /* the shards are gone on Adrian's call ("just fade in, fade out"); the panel
+     fades with its words through --g, the beam keeps running round it */
+  wrap.appendChild(panel);
   var inn = $('.band-in', b.el);
   inn.insertBefore(wrap, inn.firstChild);
-  b.wrap = wrap; b.svg = svg; b.seed = 31337 + i * 7919; b.rows = b.last ? 4 : 3; b.W = 0; b.H = 0;
+  b.wrap = wrap; b.svg = null; b.seed = 31337 + i * 7919; b.rows = b.last ? 4 : 3; b.W = 0; b.H = 0;
 }
 function layoutGlass(b) {
+  if (!b.svg) return;   /* no shards to lay out any more */
   var r = b.wrap.getBoundingClientRect();
   var W = Math.round(r.width), H = Math.round(r.height);
   if (W < 4 || H < 4 || (W === b.W && H === b.H)) return;
@@ -173,8 +175,7 @@ function setGlass(b, g) {
   if (!b.wrap || Math.abs(g - b.g) < 0.004) return;
   b.g = g;
   b.wrap.style.setProperty('--g', g.toFixed(3));
-  var whole = g >= 0.995, gone = g <= 0.004;
-  if (b.svgOff !== (whole || gone)) { b.svgOff = whole || gone; b.svg.classList.toggle('off', b.svgOff); }
+  var gone = g <= 0.004;
   if (b.gone !== gone) { b.gone = gone; b.wrap.classList.toggle('gone', gone); }
 }
 bands.forEach(buildGlass);
@@ -667,7 +668,7 @@ var bgV = $('#bgFilm'), bgZones = [], bgReady = false, bgRaf = null;
 var bgC = $('#bgCanvas'), bgCtx = null, bgDrawT = -1, bgDirty = false, bgDrawRaf = null;
 function bgSize() {
   if (!bgC) return;
-  var d = Math.min(window.devicePixelRatio || 1, 1.5), w = Math.round(window.innerWidth * d), h = Math.round(window.innerHeight * d);
+  var d = Math.min(window.devicePixelRatio || 1, coarse.matches ? 1.25 : 1.5), w = Math.round(window.innerWidth * d), h = Math.round(window.innerHeight * d);
   if (bgC.width !== w || bgC.height !== h) { bgC.width = w; bgC.height = h; bgDirty = true; }
 }
 function bgDraw() {

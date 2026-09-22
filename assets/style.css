@@ -265,7 +265,7 @@ a{color:inherit}
 
 /* every text block fades in from the bottom of the viewport and out at the
    top. --sf is written by JS from the element's position, delta gated. */
-.sf{opacity:var(--sf,1);transform:translateY(calc((1 - var(--sf,1))*24px));will-change:opacity,transform}
+.sf{opacity:var(--sf,1);transform:translateY(calc((1 - var(--sf,1))*24px))}
 .p3d{perspective:1400px;transform-style:preserve-3d}
 .tilt{transform:translateZ(var(--tz,0px)) rotateX(var(--rx,0deg)) rotateY(calc(var(--by,0deg) + var(--ry,0deg)));transition:transform .9s var(--ease-out);transform-style:preserve-3d}
 .tilt.live{transition:none}
@@ -283,9 +283,11 @@ a{color:inherit}
 /* ============================================================
    ( 01 ) THE STUDIO
    ============================================================ */
-.studio-rig{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(30px,5vw,90px);align-items:center}
-@media (max-width:900px){.studio-rig{grid-template-columns:1fr}}
-.studio-logo{position:relative;display:flex;justify-content:center}
+.studio-rig{display:grid;grid-template-columns:minmax(220px,29%) 1fr minmax(360px,46%);gap:clamp(20px,3vw,48px);align-items:center}
+.studio-rig .studio-logo{grid-column:1;justify-self:start;width:100%}
+.studio-rig .studio-copy{grid-column:3;justify-self:end}
+@media (max-width:900px){.studio-rig{grid-template-columns:1fr}.studio-rig .studio-logo,.studio-rig .studio-copy{grid-column:auto;justify-self:stretch}.studio-logo{justify-content:center}}
+.studio-logo{position:relative;display:flex;justify-content:flex-start}
 .studio-logo .float{width:min(100%,460px)}
 .portrait{position:relative;width:100%;aspect-ratio:2/3}
 .portrait-v{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none}
@@ -524,7 +526,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   border:1px solid rgba(255,255,255,.95);
   backdrop-filter:blur(18px) saturate(1.15);-webkit-backdrop-filter:blur(18px) saturate(1.15);
   box-shadow:0 1px 0 #fff inset,0 -1px 0 rgba(11,12,14,.08) inset,0 46px 80px -34px rgba(11,12,14,.5),0 14px 28px -14px rgba(11,12,14,.3),0 0 0 1px rgba(11,12,14,.04);
-  opacity:clamp(0,calc((var(--g) - .5)*2.2),1)}
+  opacity:var(--g)}
 .gpanel::after{content:"";position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,#fff,transparent)}
 .gshards{position:absolute;inset:0;width:100%;height:100%;overflow:visible;opacity:clamp(0,calc(var(--g)*2.2),1)}
 .gshards.off{display:none}
@@ -606,6 +608,14 @@ body.paused .gpanel::before{animation-play-state:paused}
 :is(.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy):nth-child(5)::before{animation-delay:-2.1s}
 :is(.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy):nth-child(6)::before{animation-delay:-3.5s}
 .sec:not(.alive) :is(.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy)::before,.foot:not(.alive) .chip::before,body.paused :is(.glass,.sec-head,.quote,.start-side,.player,.device,.chip,.studio-copy)::before{animation-play-state:paused}
+/* off-screen sections give up their frosted-glass buffers: a phone GPU cannot hold
+   thirty of them at once, which is what was reloading the page */
+.sec:not(.alive) :is(.glass,.sec-head,.quote,.start-side,.chip,.studio-copy,.quote-frost),.foot:not(.alive) .chip,.hero:not(.alive) :is(.gpanel,.band .tag,.clock){backdrop-filter:none;-webkit-backdrop-filter:none}
+@media (pointer:coarse){
+  .glass::before,.sec-head::before,.quote::before,.start-side::before,.player::before,.device::before,.chip::before,.studio-copy::before,.gpanel::before{filter:none}
+  .orb{filter:none;opacity:.4}
+  .lift{will-change:auto}
+}
 
 /* the arc: the studio's name bent around the resting lens */
 .arc{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
