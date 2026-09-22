@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sharp Frame Studios | Web Design, Photography and Film in Sarasota</title>
+<meta name="description" content="An independent studio in Sarasota, Florida. Custom websites, original photography and film, and the strategy that holds them together. One person, start to finish.">
+<meta name="theme-color" content="#C6CAD0">
+<meta name="color-scheme" content="light">
+
+<!-- og tags point at the live domain -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sharp Frame Studios | Web Design, Photography and Film">
+<meta property="og:description" content="Where your business comes into focus. Websites, photography, and film for businesses in Sarasota that refuse to look generic.">
+<meta property="og:url" content="https://sharpframestudios.com/">
+<meta property="og:image" content="https://sharpframestudios.com/assets/hero-ending.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%230B0C0E' stroke-width='2.4'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232B7BFF'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@500,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ THE ENVIRONMENT: one fixed studio void behind everything ============ -->
+<div class="env" aria-hidden="true">
+  <div class="orb orb--1"></div>
+  <div class="orb orb--2"></div>
+  <div class="orb orb--3"></div>
+  <div class="env-grain"></div>
+</div>
+
+<!-- ============ THE BACKGROUND FILM: one object, one long take, a stop per section ============ -->
+<video id="bgFilm" class="bg-film" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+<canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+
+<!-- ============ THE SIGNATURE: THE VIEWFINDER ============ -->
+<div class="vf" id="vf" aria-hidden="true">
+  <svg class="vf-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path class="vf-c" d="M0,7 L0,0 L7,0"></path>
+    <path class="vf-c" d="M93,0 L100,0 L100,7"></path>
+    <path class="vf-c" d="M100,93 L100,100 L93,100"></path>
+    <path class="vf-c" d="M7,100 L0,100 L0,93"></path>
+  </svg>
+  <div class="vf-read vf-read--bl"><span class="vf-mark">SFS</span><span class="vf-dot"></span><span id="vfFocus">FOCUS 00</span></div>
+  <div class="vf-read vf-read--br"><span id="vfIndex">00</span><span class="vf-sep">/</span><span id="vfLabel">HERO</span></div>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav" aria-label="Main">
+  <a class="brand" href="#top" aria-label="Sharp Frame Studios, back to top">
+    <img class="brand-logo brand-logo--mark" src="assets/mark.webp" alt="" width="360" height="221" decoding="async">
+    
+  </a>
+  <div class="nav-links mono">
+    <a href="#services">services <i>↗</i></a>
+    <a href="#work">work <i>↗</i></a>
+    <a href="#pricing">pricing <i>↗</i></a>
+    <a href="#faq">faq <i>↗</i></a>
+    <a class="nav-cta" href="#start">start a project <i>↗</i></a>
+  </div>
+</nav>
+
+<!-- ============ THE HERO ============ -->
+<header class="hero" id="top">
+  <div class="stage" id="stage">
+
+    <div class="poster" id="poster" aria-hidden="true"></div>
+    <video id="hero" class="hero-video" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+    <div class="scrim" aria-hidden="true"></div>
+
+
+    <!-- The clock: live Sarasota time, in the empty space above the headline. Fades out as scrolling begins. -->
+    <div class="clock" id="clock" role="timer" aria-live="off" aria-label="Local time in Sarasota, Florida">
+      <p class="clock-k mono">Local time / ET</p>
+      <p class="clock-t"><span class="clock-hms" id="clockHms">00:00:00</span><span class="clock-ms" aria-hidden="true"><span class="clock-dot-c">.</span><span id="clockMs">000</span></span></p>
+      <p class="clock-loc mono"><i class="clock-live" aria-hidden="true"></i>Sarasota, Florida</p>
+      <span class="clock-track" aria-hidden="true"><i id="clockBar"></i></span>
+    </div>
+
+    <div class="loader" id="loader" aria-hidden="true">
+      <svg class="ring" viewBox="0 0 48 48">
+        <circle class="ring-bg" cx="24" cy="24" r="20" fill="none" stroke-width="2"></circle>
+        <circle class="ring-fg" cx="24" cy="24" r="20" fill="none" stroke-width="2" stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)"></circle>
+      </svg>
+    </div>
+
+    <!-- Words bottom left, object top right: the reference's composition. -->
+    <div class="bands" id="bands">
+
+      <section class="band" data-a="0" data-b="0.20" data-ramp="0.05" aria-hidden="true">
+        <div class="band-in"><div class="band-txt"><p class="tag mono">( A )</p>
+          <h2 class="bh"><span class="dc" data-text="WHERE YOUR BUSINESS"></span><em class="it">comes</em><span class="dc" data-text="// INTO FOCUS"></span></h2>
+        </div></div>
+      </section>
+
+      <section class="band" data-a="0.28" data-b="0.48" aria-hidden="true">
+        <div class="band-in"><div class="band-txt"><p class="tag mono">( B )</p>
+          <h2 class="bh"><span class="dc" data-text="STRATEGY. DESIGN."></span><em class="it">film.</em><span class="dc" data-text="// ONE STUDIO"></span></h2>
+        </div></div>
+      </section>
+
+      <section class="band" data-a="0.56" data-b="0.76" aria-hidden="true">
+        <div class="band-in"><div class="band-txt"><p class="tag mono">( C )</p>
+          <h2 class="bh"><span class="dc" data-text="BUILT TO BE"></span><em class="it">seen</em><span class="dc" data-text="// NOT|SCROLLED PAST"></span></h2>
+        </div></div>
+      </section>
+
+      <section class="band band--settle" data-a="0.82" data-b="1">
+        <div class="band-in band-in--settle" id="settleBox">
+          <div class="band-txt">
+            <div class="settle-top" id="settleTop">
+              <p class="tag mono">Sarasota, Florida</p>
+              <p class="band-sub">Websites, photography, and film for businesses in Sarasota that refuse to look generic.</p>
+            </div>
+            <div class="settle-bot" id="settleBot">
+              <h1 class="bh bh--settle"><span class="dc" data-text="SHARP FRAME"></span><em class="it">studios</em></h1>
+              <div class="band-cta">
+                <a class="btn btn--ink" href="#start">Start a project <i>↗</i></a>
+                <a class="btn btn--line" href="#work">See the work <i>↗</i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- The composed still hero: phones, portrait tablets, landscape phones, reduced motion -->
+    <div class="static-hero" id="staticHero">
+      <div class="sh-bg" id="shBg" aria-hidden="true"></div>
+      <div class="sh-lens" aria-hidden="true"><div class="lens lens--lg" style="--rot:22deg"><i class="lens-r1"></i><i class="lens-r2"></i><i class="lens-r3"></i><i class="lens-iris"></i><i class="lens-spec"></i></div></div>
+      <div class="sh-in">
+        <p class="tag mono">( A ) Sarasota, Florida</p>
+        <h1 class="bh bh--sh">WHERE YOUR BUSINESS <em class="it">comes</em> // INTO FOCUS</h1>
+        <p class="band-sub">Websites, photography, and film for businesses that refuse to look generic.</p>
+        <div class="band-cta">
+          <a class="btn btn--ink" href="#start">Start a project <i>↗</i></a>
+          <a class="btn btn--line" href="#work">See the work <i>↗</i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cue mono" id="cue" aria-hidden="true">scroll <i>↓</i></div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- ============ ( 01 ) THE STUDIO: the logo in 3D ============ -->
+<section class="sec sec--studio" id="studio" data-vf="01 / THE STUDIO">
+  <div class="wrap studio-rig">
+    <div class="studio-logo p3d">
+      <div class="float">
+        <div class="tilt portrait" data-tilt="9" id="portrait">
+          <video class="portrait-v" id="portraitV" muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
+            <source src="assets/portrait.mp4" type="video/mp4">
+          </video>
+          <canvas class="portrait-c" id="portraitC" role="img" aria-label="A slowly turning black and white portrait of Adrian Szekeres, the founder of Sharp Frame Studios"></canvas>
+        </div>
+      </div>
+      <div class="logo-glow" aria-hidden="true"></div>
+    </div>
+    <div class="studio-copy">
+      <p class="kicker mono sf">( 01 ) THE STUDIO</p>
+      <h2 class="h2 sf"><span class="dc" data-text="ONE PERSON."></span> <em class="it">every</em> <span class="dc" data-text="FRAME."></span></h2>
+      <p class="lede sf">Sharp Frame Studios is an independent studio in Sarasota, Florida. Strategy, website design, development, photography, and film, all handled by one person, start to finish. No handoffs, no account managers, no stock anything.</p>
+      <ul class="facts-row mono sf">
+        <li><b>1:1</b>direct partnership</li>
+        <li><b>04</b>core services</li>
+        <li><b>End to end</b>creative capability</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ( 02 ) SERVICES: three tilting glass cards ============ -->
+<section class="sec sec--services" id="services" data-bgstop="6" data-vf="02 / SERVICES">
+  <div class="wrap">
+    <div class="sec-head sec-head--split">
+      <div>
+        <p class="kicker mono sf">( 02 ) WHAT THE STUDIO DOES</p>
+        <h2 class="h2 sf"><span class="dc" data-text="THREE THINGS,"></span> <em class="it">handled</em><br><span class="dc" data-text="// BY ONE PERSON."></span></h2>
+      </div>
+      <p class="lede lede--r sf">Website design, development, and creative production built to give ambitious businesses a stronger digital presence.</p>
+    </div>
+
+    <div class="cards p3d">
+      <div class="lift"><article class="glass card tilt sf" data-tilt="11" style="--by:8deg">
+        <figure class="card-fig"><img src="assets/svc-design.jpg" alt="A chrome-framed pane of glass floating at an angle" loading="lazy" decoding="async"></figure>
+        <p class="mono card-n">01 <span>Design + Development</span></p>
+        <h3 class="h3">Website Design</h3>
+        <p class="p">Custom websites shaped around your business, audience, and goals. From structure and responsive design to interactions, mobile optimization, and final development, every detail is built to feel intentional.</p>
+      </article></div>
+      <div class="lift"><article class="glass card tilt sf" data-tilt="11" style="--by:0deg;--tz:18px">
+        <figure class="card-fig"><img src="assets/svc-production.jpg" alt="A chrome camera lens element with a blue iris" loading="lazy" decoding="async"></figure>
+        <p class="mono card-n">02 <span>Photo + Film</span></p>
+        <h3 class="h3">Creative Production</h3>
+        <p class="p">Original photography and video created specifically for your website, campaigns, and digital presence, so your business does not have to rely on generic stock content.</p>
+      </article></div>
+      <div class="lift"><article class="glass card tilt sf" data-tilt="11" style="--by:-8deg">
+        <figure class="card-fig"><img src="assets/svc-growth.jpg" alt="Seven chrome filaments rising in an ascending line" loading="lazy" decoding="async"></figure>
+        <p class="mono card-n">03 <span>SEO + Social</span></p>
+        <h3 class="h3">Digital Growth</h3>
+        <p class="p">SEO foundations, content strategy, and ongoing social support designed to extend the brand beyond launch and keep the business visible across digital channels.</p>
+      </article></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ( 03 ) CHEVROLET COX: two films, two designed players ============ -->
+<section class="sec sec--film" id="film" data-bgstop="10.1" data-vf="03 / PARTNER WORK">
+  <div class="wrap">
+    <div class="sec-head sec-head--split">
+      <div>
+        <p class="kicker mono sf">( 03 ) PARTNER WORK</p>
+        <h2 class="h2 sf"><span class="dc" data-text="FILM FOR"></span> <em class="it">Chevrolet</em><br><span class="dc" data-text="// COX"></span></h2>
+      </div>
+      <p class="lede lede--r sf">I run the social media and produce the vehicle films for Cox Chevrolet. Two of them, exactly as they ran.</p>
+    </div>
+
+    <div class="films p3d">
+      <figure class="film sf">
+        <div class="lift lift--l"><div class="tilt player" data-tilt="7" id="player1" style="--by:10deg">
+          <video class="player-v" preload="metadata" playsinline poster="assets/chevy-colorado-open.jpg" aria-label="Chevrolet Colorado Z71 film for Cox Chevrolet">
+            <source src="assets/chevy-colorado.mp4" type="video/mp4">
+          </video>
+          <button class="play" type="button" aria-label="Play the Colorado Z71 film">
+            <span class="lens lens--sm" style="--rot:0deg"><i class="lens-r1"></i><i class="lens-r2"></i><i class="lens-iris"></i></span>
+            <span class="play-tri" aria-hidden="true"></span>
+          </button>
+          <div class="player-glow" aria-hidden="true"></div>
+        </div></div>
+        <figcaption class="film-cap">
+          <span class="h3">Colorado Z71</span>
+          <span class="mono">No road required · 0:06 · sound on</span>
+        </figcaption>
+      </figure>
+
+      <figure class="film sf">
+        <div class="lift lift--r"><div class="tilt player" data-tilt="7" id="player2" style="--by:-10deg">
+          <video class="player-v" preload="metadata" playsinline poster="assets/chevy-suburban-open.jpg" aria-label="Chevrolet Suburban RST film for Cox Chevrolet">
+            <source src="assets/chevy-suburban.mp4" type="video/mp4">
+          </video>
+          <button class="play" type="button" aria-label="Play the Suburban RST film">
+            <span class="lens lens--sm" style="--rot:0deg"><i class="lens-r1"></i><i class="lens-r2"></i><i class="lens-iris"></i></span>
+            <span class="play-tri" aria-hidden="true"></span>
+          </button>
+          <div class="player-glow" aria-hidden="true"></div>
+        </div></div>
+        <figcaption class="film-cap">
+          <span class="h3">Suburban RST</span>
+          <span class="mono">Go further, arrive in command · 0:10 · sound on</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ( 04 ) WEBSITES: floating 3D devices ============ -->
+<section class="sec sec--work" id="work" data-bgstop="15.1" data-vf="04 / WEBSITES">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker mono sf">( 04 ) WEBSITES</p>
+      <h2 class="h2 sf"><span class="dc" data-text="BUILT TO BE"></span> <em class="it">seen.</em></h2>
+    </div>
+
+    <div class="devices p3d">
+      <figure class="device-rig sf">
+        <div class="float float--b">
+          <div class="device tilt" data-tilt="10">
+            <div class="device-screen"><img src="assets/work-1.jpg" alt="One Coast Construction: the website and its blueprint-style brand system" loading="lazy" decoding="async"></div>
+          </div>
+        </div>
+        <div class="device-glow" aria-hidden="true"></div>
+        <figcaption class="film-cap">
+          <span class="h3">One Coast Construction</span>
+          <span class="mono">Website / Florida general contractor</span>
+        </figcaption>
+      </figure>
+
+      <figure class="device-rig sf">
+        <div class="float float--c">
+          <div class="device tilt" data-tilt="10">
+            <div class="device-screen"><img src="assets/work-2.jpg" alt="R and J Concessions: the website, three generations of fair food, and the event enquiry flow" loading="lazy" decoding="async"></div>
+          </div>
+        </div>
+        <div class="device-glow" aria-hidden="true"></div>
+        <figcaption class="film-cap">
+          <span class="h3">R&amp;J Concessions</span>
+          <span class="mono">Website / Fairs and events, North America</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ( 05 ) THE FOCUS STRIP: hold to focus ============ -->
+<section class="sec sec--focus" id="focus" data-bgstop="16.4" data-vf="05 / THE DIFFERENCE">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker mono sf">( 05 ) THE DIFFERENCE</p>
+      <h2 class="h2 sf"><span class="dc" data-text="HOLD TO"></span> <em class="it">see</em> <span class="dc" data-text="IT."></span></h2>
+      <p class="lede sf">Most sites are built to look finished. Yours gets built to be understood in four seconds.</p>
+    </div>
+    <div class="focus-rig sf">
+      <div class="glass focus-panel" id="focusPanel" style="--f:0">
+        <div class="fp-blur">
+          <img class="fp-img" src="assets/focus.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <div class="fp-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="fp-marks">
+          <span class="fp-mark mono" data-at="0.42"><b></b>Clear positioning</span>
+          <span class="fp-mark mono" data-at="0.62"><b></b>Original imagery</span>
+          <span class="fp-mark mono" data-at="0.82"><b></b>One obvious next step</span>
+        </div>
+        <button class="fp-hit" id="fpHit" type="button" aria-label="Press and hold to bring the panel into focus">
+          <span class="fp-label mono" id="fpLabel">Press and hold</span>
+          <span class="fp-meter" aria-hidden="true"><i></i></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ( 06 ) PROCESS ============ -->
+<section class="sec sec--process" id="process" data-bgstop="19.7" data-vf="06 / PROCESS">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker mono sf">( 06 ) HOW IT RUNS</p>
+      <h2 class="h2 sf"><span class="dc" data-text="STRATEGY"></span> <em class="it">first.</em> <span class="dc" data-text="ALWAYS."></span></h2>
+    </div>
+    <ol class="steps p3d">
+      <li class="step glass slam"><div class="sf step-in">
+        <span class="step-n"><span class="lens lens--n" style="--rot:0deg"><i class="lens-r1"></i><i class="lens-iris"></i></span><b class="mono">001</b></span>
+        <div><h3 class="h3">Strategy</h3><p class="p">Every project begins with the business itself: its audience, competitors, positioning, goals, content, and the action the website needs visitors to take.</p>
+        <ul class="inc"><li>Business and audience review</li><li>Website goals and page structure</li><li>Creative direction and content planning</li></ul></div></div>
+      </li>
+      <li class="step glass slam"><div class="sf step-in">
+        <span class="step-n"><span class="lens lens--n" style="--rot:0deg"><i class="lens-r1"></i><i class="lens-iris"></i></span><b class="mono">002</b></span>
+        <div><h3 class="h3">Design + Development</h3><p class="p">Strategy becomes a responsive digital experience through layout, typography, visual hierarchy, interaction, motion, and development.</p>
+        <ul class="inc"><li>Custom website design</li><li>Responsive desktop and mobile development</li><li>Interactions and technical implementation</li></ul></div></div>
+      </li>
+      <li class="step glass slam"><div class="sf step-in">
+        <span class="step-n"><span class="lens lens--n" style="--rot:0deg"><i class="lens-r1"></i><i class="lens-iris"></i></span><b class="mono">003</b></span>
+        <div><h3 class="h3">Content + Launch</h3><p class="p">The final website is refined with the imagery, video, copy, SEO foundations, and technical details required to launch as a complete digital presence.</p>
+        <ul class="inc"><li>Photography and video when required</li><li>SEO and final optimization</li><li>Testing and launch</li></ul></div></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ ( 07 ) PROOF ============ -->
+<section class="sec sec--quote" data-bgstop="20.2" data-vf="07 / PROOF">
+  <div class="wrap wrap--narrow">
+    <figure class="quote sf">
+      <p class="tag mono">( 07 ) PROOF</p>
+      <blockquote><p>Sharp Frame Studios captures the heart of Blu Kouzina through beautiful content and a consistent social presence. Creative, reliable, and always attentive to every detail.</p></blockquote>
+      <figcaption><span class="q-name">Blu Kouzina</span><span class="mono">Client, Sarasota</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ ( 08 ) PRICING ============ -->
+<section class="sec sec--pricing" id="pricing" data-bgstop="25.3" data-vf="08 / PRICING">
+  <div class="wrap">
+    <div class="sec-head sec-head--split">
+      <div>
+        <p class="kicker mono sf">( 08 ) WAYS TO WORK TOGETHER</p>
+        <h2 class="h2 sf"><span class="dc" data-text="CLEAR NUMBERS,"></span> <em class="it">before</em><br><span class="dc" data-text="// YOU ASK."></span></h2>
+      </div>
+      <div class="toggle sf" role="tablist" aria-label="Pricing type">
+        <button class="tg is-on" role="tab" aria-selected="true" aria-controls="p-web" id="tab-web" type="button">Websites</button>
+        <button class="tg" role="tab" aria-selected="false" aria-controls="p-social" id="tab-social" type="button">Social</button>
+        <span class="tg-pill" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <div class="plans p3d" id="p-web" role="tabpanel" aria-labelledby="tab-web">
+      <div class="lift"><article class="glass plan tilt sf" data-tilt="6" style="--by:9deg;--tz:0px">
+        <h3 class="h3">Website Launch</h3>
+        <p class="p plan-d">A polished landing page designed to launch your brand with confidence.</p>
+        <p class="price"><span class="cur">$</span>1,500<span class="plus">+</span></p>
+        <a class="btn btn--line btn--full" href="#start">Book a consultation</a>
+        <p class="mono inc-h">What is included</p>
+        <ul class="inc"><li>One custom-designed landing page</li><li>Up to seven content sections</li><li>Mobile, tablet, and desktop optimization</li><li>Contact form</li><li>Social media links</li><li>Basic on-page SEO</li></ul>
+      </article></div>
+      <div class="lift"><article class="glass plan plan--pick tilt sf" data-tilt="6" style="--by:0deg;--tz:44px">
+        <span class="mono plan-tag">Most chosen</span>
+        <h3 class="h3">Business Website</h3>
+        <p class="p plan-d">A complete custom website built to present your services and generate inquiries.</p>
+        <p class="price"><span class="cur">$</span>3,000<span class="plus">+</span></p>
+        <a class="btn btn--ink btn--full" href="#start">Book a consultation</a>
+        <p class="mono inc-h">What is included</p>
+        <ul class="inc"><li>Up to five custom pages</li><li>Mobile, tablet, and desktop optimization</li><li>Contact and inquiry forms</li><li>Portfolio, services, menu, or gallery section</li><li>Basic CMS setup where required</li><li>Basic on-page SEO</li><li>Google Analytics and Search Console connection</li></ul>
+      </article></div>
+      <div class="lift"><article class="glass plan tilt sf" data-tilt="6" style="--by:-9deg;--tz:0px">
+        <h3 class="h3">Signature Website</h3>
+        <p class="p plan-d">A premium digital platform with refined motion, structure, and scalable content.</p>
+        <p class="price"><span class="cur">$</span>5,000<span class="plus">+</span></p>
+        <a class="btn btn--line btn--full" href="#start">Book a consultation</a>
+        <p class="mono inc-h">What is included</p>
+        <ul class="inc"><li>Up to ten custom pages</li><li>Premium visual direction and motion</li><li>Advanced responsive design</li><li>Up to two standard CMS collections</li><li>Portfolio, blog, case-study, or gallery system</li><li>Conversion-focused page structure</li><li>Expanded on-page SEO setup</li><li>Analytics and Search Console</li><li>Three revision rounds</li><li>30 days of post-launch support</li></ul>
+      </article></div>
+    </div>
+
+    <div class="plans p3d is-hidden" id="p-social" role="tabpanel" aria-labelledby="tab-social" hidden>
+      <div class="lift"><article class="glass plan tilt sf" data-tilt="6" style="--by:9deg;--tz:0px">
+        <h3 class="h3">Content Starter</h3>
+        <p class="p plan-d">Essential design support for new brands taking the first step.</p>
+        <p class="price"><span class="cur">$</span>999<span class="per">/ month</span></p>
+        <a class="btn btn--line btn--full" href="#start">Book a consultation</a>
+        <p class="mono inc-h">What is included</p>
+        <ul class="inc"><li>Custom-crafted visual identity</li><li>Responsive, modern website design</li><li>High-quality imagery and production</li><li>8 scheduled social media posts</li><li>Captions and hashtag research</li><li>Management of one social platform</li></ul>
+      </article></div>
+      <div class="lift"><article class="glass plan plan--pick tilt sf" data-tilt="6" style="--by:0deg;--tz:44px">
+        <span class="mono plan-tag">Most chosen</span>
+        <h3 class="h3">Social Growth</h3>
+        <p class="p plan-d">Consistent content creation and strategic posting designed to increase visibility, engagement, and trust.</p>
+        <p class="price"><span class="cur">$</span>2,500<span class="per">/ month</span></p>
+        <a class="btn btn--ink btn--full" href="#start">Book a consultation</a>
+        <p class="mono inc-h">What is included</p>
+        <ul class="inc"><li>One half-day content session</li><li>30 professionally edited photos</li><li>12 scheduled social media posts</li><li>Management of two social platforms</li><li>Monthly content calendar</li><li>Captions and hashtag research</li><li>Engagement monitoring and insights</li></ul>
+      </article></div>
+      <div class="lift"><article class="glass plan tilt sf" data-tilt="6" style="--by:-9deg;--tz:0px">
+        <h3 class="h3">Full Presence</h3>
+        <p class="p plan-d">Complete content production and social media management for brands ready to build a powerful digital presence.</p>
+        <p class="price"><span class="cur">$</span>4,500<span class="per">/ month</span></p>
+        <a class="btn btn--line btn--full" href="#start">Book a consultation</a>
+        <p class="mono inc-h">What is included</p>
+        <ul class="inc"><li>Two monthly content sessions</li><li>50 professionally edited photos</li><li>10 short-form videos</li><li>Professional drone footage</li><li>16 scheduled social media posts</li><li>Management of up to three platforms</li><li>Monthly content calendar</li><li>Captions and hashtag research</li><li>Performance reporting</li><li>Priority support</li></ul>
+      </article></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ( 09 ) FAQ ============ -->
+<section class="sec sec--faq" id="faq" data-bgstop="29.4" data-vf="09 / COMMON QUESTIONS">
+  <div class="wrap">
+    <div class="sec-head sec-head--split">
+      <div><p class="kicker mono sf">( 09 ) COMMON QUESTIONS</p><h2 class="h2 sf"><span class="dc" data-text="THE THINGS"></span> <em class="it">everyone</em> <span class="dc" data-text="ASKS."></span></h2></div>
+      <a class="btn btn--line sf" href="#start">Start a project <i>↗</i></a>
+    </div>
+    <div class="faq">
+      <details class="glass qa sf"><summary><span>What does Sharp Frame Studios specialize in?</span><i class="qa-x" aria-hidden="true"></i></summary><div class="qa-a"><p class="p">Our primary focus is custom website design and development. We also provide photography, videography, visual direction, SEO foundations, and social media support when a project requires a complete digital presence.</p></div></details>
+      <details class="glass qa sf"><summary><span>How much does a custom website cost?</span><i class="qa-x" aria-hidden="true"></i></summary><div class="qa-a"><p class="p">Pricing depends on the size, complexity, functionality, content requirements, and creative direction of the project. Every website is scoped individually before development begins.</p></div></details>
+      <details class="glass qa sf"><summary><span>How long does a website take to build?</span><i class="qa-x" aria-hidden="true"></i></summary><div class="qa-a"><p class="p">Most projects move from strategy to launch within several weeks, depending on the size of the website, client feedback, content availability, and required functionality.</p></div></details>
+      <details class="glass qa sf"><summary><span>Will my website work on mobile devices?</span><i class="qa-x" aria-hidden="true"></i></summary><div class="qa-a"><p class="p">Yes. Every website is designed responsively across desktop, tablet, and mobile, with layouts and interactions optimized for each screen size.</p></div></details>
+      <details class="glass qa sf"><summary><span>Can you create the photography and video for my website?</span><i class="qa-x" aria-hidden="true"></i></summary><div class="qa-a"><p class="p">Yes. One of Sharp Frame Studios' key advantages is that website design and original visual content can be produced together. Photography, video, drone footage, and branded content can all be created specifically for the final website.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ( 10 ) START A PROJECT ============ -->
+<section class="sec sec--start" id="start" data-bgstop="30.3" data-vf="10 / START A PROJECT">
+  <div class="wrap start-rig">
+    <div class="start-side">
+      <p class="kicker mono sf">( 10 ) START A PROJECT</p>
+      <h2 class="h2 sf"><span class="dc" data-text="LET'S CREATE"></span> <em class="it">something.</em></h2>
+      <p class="lede sf">Tell me about your business, your current website, and what you want to build. I'll reply within one business day with the best next step for your project.</p>
+      <ul class="start-facts mono sf">
+        <li><span class="sf-k">Email</span><a href="mailto:info@sharpframestudios.com">info@sharpframestudios.com</a></li>
+        <li><span class="sf-k">Reply</span>Within one business day</li>
+        <li><span class="sf-k">Studio</span>Sarasota, Florida</li>
+      </ul>
+    </div>
+    <div class="glass form-wrap sf">
+      <form class="form" id="form" novalidate>
+        <div class="row">
+          <label class="field"><span class="lb mono">First name<i>*</i></span><input type="text" name="firstName" autocomplete="given-name" required></label>
+          <label class="field"><span class="lb mono">Last name<i>*</i></span><input type="text" name="lastName" autocomplete="family-name" required></label>
+        </div>
+        <label class="field"><span class="lb mono">Email<i>*</i></span><input type="email" name="email" autocomplete="email" required></label>
+        <label class="field"><span class="lb mono">What is it about?</span>
+          <select name="category"><option>Website Design and Development</option><option>Website Redesign</option><option>Photography and Film</option><option>Social Media</option><option>Brand and Creative Direction</option><option>Other</option></select>
+        </label>
+        <label class="field"><span class="lb mono">Message</span><textarea name="message" rows="4" placeholder="Your business, your current site, and what you want to build."></textarea></label>
+        <p class="form-err" id="formErr" role="alert" hidden></p>
+        <button class="btn btn--ink btn--full btn--lg" type="submit" id="submit">Send it <i>↗</i></button>
+        <p class="mono form-note">Goes straight to my inbox. No list, no automated sequence.</p>
+      </form>
+      <div class="sent" id="sent" hidden>
+        <span class="lens lens--n" style="--rot:0deg"><i class="lens-r1"></i><i class="lens-iris"></i></span>
+        <h3 class="h3">Got it.</h3>
+        <p class="p">I'll reply within one business day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot" data-vf="11 / SHARP FRAME STUDIOS">
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="brand" href="#top" aria-label="Back to top"><img class="brand-logo brand-logo--mark" src="assets/mark.webp" alt="" width="360" height="221" loading="lazy" decoding="async"></a>
+      <nav class="foot-nav mono" aria-label="Footer"><a class="chip" href="#services">services ↗</a><a class="chip" href="#work">work ↗</a><a class="chip" href="#pricing">pricing ↗</a><a class="chip" href="#faq">faq ↗</a><a class="chip" href="#start">start a project ↗</a><a class="chip" href="blog/">blog ↗</a></nav>
+    </div>
+    <div class="foot-bot mono">
+      <span class="chip"><a href="mailto:info@sharpframestudios.com">info@sharpframestudios.com</a></span>
+      <span class="chip">Sarasota, Florida</span>
+      <span class="chip">&copy; 2026 Sharp Frame Studios</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
