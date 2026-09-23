@@ -3,6 +3,9 @@
 (function () {
   var host = document.getElementById('posts');
   if (!host) return;
+  /* The list is rendered into the HTML at build time so it works without
+     JavaScript and can be crawled. If it is already rendered, leave it. */
+  if (host.querySelector('.post-card')) return;
   fetch('posts.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (posts) {
     host.innerHTML = posts.map(function (p, i) {
       return '<a class="post-card glass" href="' + encodeURIComponent(p.slug) + '.html">' +
