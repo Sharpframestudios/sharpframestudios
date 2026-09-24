@@ -26,6 +26,8 @@ BLOG = os.path.join(ROOT, "blog")
 SITE = "https://sharpframestudios.com"
 BRAND = "Sharp Frame Studios"
 EMAIL = "info@sharpframestudios.com"
+PHONE_DISPLAY = "(941) 920-2086"
+PHONE_E164 = "+19419202086"
 DEFAULT_IMAGE = f"{SITE}/assets/hero-ending.jpg"
 SKIP_POSTS = {"_template.html", "index.html"}
 
@@ -296,6 +298,7 @@ def business_schema():
         "image": DEFAULT_IMAGE,
         "logo": f"{SITE}/assets/mark.webp",
         "email": EMAIL,
+        "telephone": PHONE_E164,
         "description": (
             "Independent studio in Sarasota, Florida. Custom website design and "
             "development, original photography and film, and SEO foundations, "
@@ -343,6 +346,7 @@ def service_schema(name, description, url, service_type):
             "name": BRAND,
             "url": SITE + "/",
             "email": EMAIL,
+        "telephone": PHONE_E164,
             "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Sarasota",
@@ -378,6 +382,35 @@ def add_footer_hub_links(path, prefix):
     if new != doc:
         open(path, "w", encoding="utf-8").write(new)
     return True
+
+
+def add_phone(path, homepage=False):
+    """Put the phone number on the page: footer chip everywhere, and on the
+    homepage also in the contact list. A visible, tappable number is both a
+    local ranking signal and the fastest route a ready buyer has."""
+    doc = open(path, encoding="utf-8").read()
+    original = doc
+    doc = re.sub(r"<!-- phone:start -->.*?<!-- phone:end -->", "", doc, flags=re.S)
+
+    chip = (f'<span class="chip"><a href="tel:{PHONE_E164}">'
+            f'{PHONE_DISPLAY}</a></span>')
+    anchor = '<div class="foot-bot mono">'
+    i = doc.find(anchor)
+    if i != -1:
+        i += len(anchor)
+        doc = doc[:i] + marked("phone", chip) + doc[i:]
+
+    if homepage:
+        item = (f'<li><span class="sf-k">Phone</span>'
+                f'<a href="tel:{PHONE_E164}">{PHONE_DISPLAY}</a></li>')
+        m = re.search(r'<li><span class="sf-k">Email</span>', doc)
+        if m:
+            doc = doc[:m.start()] + marked("phone", item) + doc[m.start():]
+
+    if doc != original:
+        open(path, "w", encoding="utf-8").write(doc)
+        return True
+    return False
 
 
 def page_meta(doc):
@@ -465,6 +498,18 @@ def main():
         inject(path, f"{SITE}/{slug}/", "page",
                extra_schema=service_schema(name, desc, f"{SITE}/{slug}/", name))
     print(f"hub pages        : {len(HUBS)} done")
+
+    phones = 0
+    for e in posts:
+        phones += add_phone(os.path.join(BLOG, e["slug"] + ".html"))
+    phones += add_phone(os.path.join(BLOG, "index.html"))
+    phones += add_phone(os.path.join(BLOG, "_template.html"))
+    phones += add_phone(os.path.join(ROOT, "index.html"), homepage=True)
+    for slug in HUBS:
+        pth = os.path.join(ROOT, slug, "index.html")
+        if os.path.exists(pth):
+            phones += add_phone(pth)
+    print(f"phone number     : {phones} pages")
 
     nav = 0
     for e in posts:
