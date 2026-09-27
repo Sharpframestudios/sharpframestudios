@@ -46,7 +46,16 @@ HUB_FOR_CATEGORY = {
     "Local SEO": "seo-sarasota",
     "SEO": "seo-sarasota",
     "Conversion": "seo-sarasota",
-    "Social Media": "seo-sarasota",
+    # 2026-27 campaign categories. Social Media deliberately has no hub:
+    # there is no social media service page, and an SEO pitch on a social
+    # post reads wrong. Social posts link to ../#services and ../#start.
+    "Industry Websites": "web-design-sarasota",
+    "Website Content": "web-design-sarasota",
+    "Website Basics": "web-design-sarasota",
+    "Brand & Visuals": "web-design-sarasota",
+    "Florida Business": "web-design-sarasota",
+    "Platforms": "framer-web-design",
+    "Getting Found": "seo-sarasota",
 }
 
 # Several phrasings so 42 pages do not carry one identical sentence.
