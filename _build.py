@@ -31,11 +31,11 @@ PHONE_E164 = "+19419202086"
 DEFAULT_IMAGE = f"{SITE}/assets/hero-ending.jpg"
 SKIP_POSTS = {"_template.html", "index.html"}
 
-HUBS = {
-    "web-design-sarasota": "Web Design in Sarasota",
-    "seo-sarasota": "SEO in Sarasota",
-    "framer-web-design": "Framer Web Design",
-}
+# The three hub pages (web-design-sarasota, seo-sarasota, framer-web-design)
+# were removed from the site on Adrian's decision (Sept 27, 2026). Keep this
+# empty: no hub links in posts, no hub chips in footers, no hub URLs in the
+# sitemap, and the strippers clean old markers out.
+HUBS = {}
 
 # Which hub a post feeds, decided by its category.
 HUB_FOR_CATEGORY = {
@@ -212,22 +212,22 @@ def guard_blog_js():
 def add_hub_links(posts):
     changed = 0
     for e in posts:
-        hub = HUB_FOR_CATEGORY.get(e["category"])
-        if not hub:
-            continue
-        options = HUB_SENTENCES[hub]
-        pick = int(hashlib.md5(e["slug"].encode()).hexdigest(), 16) % len(options)
-        payload = f'\n      <p class="post-p">{options[pick]}</p>\n    '
-
         path = os.path.join(BLOG, e["slug"] + ".html")
         doc = open(path, encoding="utf-8").read()
-        # The sentence belongs inside the closing section, not loose in the
-        # wrapper, so it inherits the same column and spacing as the prose.
         stripped = re.sub(r"<!-- hub:start -->.*?<!-- hub:end -->", "", doc, flags=re.S)
-        last = stripped.rfind("</section>")
-        if last == -1:
-            continue
-        new = stripped[:last] + marked("hub", payload) + stripped[last:]
+        hub = HUB_FOR_CATEGORY.get(e["category"]) if HUBS else None
+        if hub not in HUBS:
+            hub = None
+        if not hub:
+            new = stripped
+        else:
+            options = HUB_SENTENCES[hub]
+            pick = int(hashlib.md5(e["slug"].encode()).hexdigest(), 16) % len(options)
+            payload = f'\n      <p class="post-p">{options[pick]}</p>\n    '
+            last = stripped.rfind("</section>")
+            if last == -1:
+                continue
+            new = stripped[:last] + marked("hub", payload) + stripped[last:]
         if new != doc:
             open(path, "w", encoding="utf-8").write(new)
             changed += 1
@@ -377,17 +377,14 @@ def add_footer_hub_links(path, prefix):
     doc = open(path, encoding="utf-8").read()
     chips = "".join(
         f'<a class="chip" href="{prefix}{slug}/">{label.lower()} ↗</a>'
-        for slug, label in [
-            ("web-design-sarasota", "web design"),
-            ("seo-sarasota", "seo"),
-            ("framer-web-design", "framer"),
-        ]
+        for slug, label in HUBS.items()
     )
-    doc = re.sub(r"<!-- hubnav:start -->.*?<!-- hubnav:end -->", "", doc, flags=re.S)
-    m = re.search(r'<nav class="foot-nav mono" aria-label="Footer">', doc)
-    if not m:
-        return False
-    new = doc[: m.end()] + marked("hubnav", chips) + doc[m.end():]
+    new = re.sub(r"<!-- hubnav:start -->.*?<!-- hubnav:end -->", "", doc, flags=re.S)
+    if chips:
+        m = re.search(r'<nav class="foot-nav mono" aria-label="Footer">', new)
+        if not m:
+            return False
+        new = new[: m.end()] + marked("hubnav", chips) + new[m.end():]
     if new != doc:
         open(path, "w", encoding="utf-8").write(new)
     return True

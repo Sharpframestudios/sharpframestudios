@@ -22,9 +22,11 @@
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@500,700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<link rel="preload" as="image" href="assets/hero-poster.jpg" fetchpriority="high">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@500,700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@500,700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap"></noscript>
 <!-- seo:start -->
 <link rel="canonical" href="https://sharpframestudios.com/">
 <meta property="og:type" content="website">
@@ -70,7 +72,7 @@
 <!-- ============ NAV ============ -->
 <nav class="nav" id="nav" aria-label="Main">
   <a class="brand" href="#top" aria-label="Sharp Frame Studios, back to top">
-    <img class="brand-logo brand-logo--mark" src="assets/mark.webp" alt="" width="360" height="221" decoding="async">
+    <img class="brand-logo brand-logo--mark" src="assets/mark-sm.webp" srcset="assets/mark-sm.webp 160w, assets/mark.webp 360w" sizes="56px" alt="" width="360" height="221" decoding="async">
     
   </a>
   <div class="nav-links mono">
@@ -87,7 +89,8 @@
   <div class="stage" id="stage">
 
     <div class="poster" id="poster" aria-hidden="true"></div>
-    <video id="hero" class="hero-video" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+    <video id="hero" class="hero-video" preload="none" muted playsinline aria-hidden="true" tabindex="-1" data-bytes-m="1768709"></video>
+    <video class="hero-video rev" id="heroRev" muted playsinline preload="none" aria-hidden="true" tabindex="-1" data-bytes="6416714" data-bytes-m="2198733"></video>
     <div class="scrim" aria-hidden="true"></div>
 
 
@@ -174,7 +177,7 @@
     <div class="studio-logo p3d">
       <div class="float">
         <div class="tilt portrait" data-tilt="9" id="portrait">
-          <video class="portrait-v" id="portraitV" muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
+          <video class="portrait-v" id="portraitV" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
             <source src="assets/portrait.mp4" type="video/mp4">
           </video>
           <canvas class="portrait-c" id="portraitC" role="img" aria-label="A slowly turning black and white portrait of Adrian Szekeres, the founder of Sharp Frame Studios"></canvas>
@@ -208,19 +211,19 @@
 
     <div class="cards p3d">
       <div class="lift"><article class="glass card tilt sf" data-tilt="11" style="--by:8deg">
-        <figure class="card-fig"><img src="assets/svc-design.jpg" alt="A chrome-framed pane of glass floating at an angle" loading="lazy" decoding="async"></figure>
+        <figure class="card-fig"><img src="assets/svc-design-720.jpg" srcset="assets/svc-design-720.jpg 720w, assets/svc-design-1200.jpg 1200w, assets/svc-design.jpg 1920w" sizes="(max-width:940px) 92vw, 30vw" width="1920" height="1080" alt="A chrome-framed pane of glass floating at an angle" loading="lazy" decoding="async"></figure>
         <p class="mono card-n">01 <span>Design + Development</span></p>
         <h3 class="h3">Website Design</h3>
         <p class="p">Custom websites shaped around your business, audience, and goals. From structure and responsive design to interactions, mobile optimization, and final development, every detail is built to feel intentional.</p>
       </article></div>
       <div class="lift"><article class="glass card tilt sf" data-tilt="11" style="--by:0deg;--tz:18px">
-        <figure class="card-fig"><img src="assets/svc-production.jpg" alt="A chrome camera lens element with a blue iris" loading="lazy" decoding="async"></figure>
+        <figure class="card-fig"><img src="assets/svc-production-720.jpg" srcset="assets/svc-production-720.jpg 720w, assets/svc-production-1200.jpg 1200w, assets/svc-production.jpg 1920w" sizes="(max-width:940px) 92vw, 30vw" width="1920" height="1080" alt="A chrome camera lens element with a blue iris" loading="lazy" decoding="async"></figure>
         <p class="mono card-n">02 <span>Photo + Film</span></p>
         <h3 class="h3">Creative Production</h3>
         <p class="p">Original photography and video created specifically for your website, campaigns, and digital presence, so your business does not have to rely on generic stock content.</p>
       </article></div>
       <div class="lift"><article class="glass card tilt sf" data-tilt="11" style="--by:-8deg">
-        <figure class="card-fig"><img src="assets/svc-growth.jpg" alt="Seven chrome filaments rising in an ascending line" loading="lazy" decoding="async"></figure>
+        <figure class="card-fig"><img src="assets/svc-growth-720.jpg" srcset="assets/svc-growth-720.jpg 720w, assets/svc-growth-1200.jpg 1200w, assets/svc-growth.jpg 1920w" sizes="(max-width:940px) 92vw, 30vw" width="1920" height="1080" alt="Seven chrome filaments rising in an ascending line" loading="lazy" decoding="async"></figure>
         <p class="mono card-n">03 <span>SEO + Social</span></p>
         <h3 class="h3">Digital Growth</h3>
         <p class="p">SEO foundations, content strategy, and ongoing social support designed to extend the brand beyond launch and keep the business visible across digital channels.</p>
@@ -243,7 +246,7 @@
     <div class="films p3d">
       <figure class="film sf">
         <div class="lift lift--l"><div class="tilt player" data-tilt="7" id="player1" style="--by:10deg">
-          <video class="player-v" preload="metadata" playsinline poster="assets/chevy-colorado-open.jpg" aria-label="Chevrolet Colorado Z71 film for Cox Chevrolet">
+          <video class="player-v" preload="none" playsinline data-poster="assets/chevy-colorado-open.jpg" aria-label="Chevrolet Colorado Z71 film for Cox Chevrolet">
             <source src="assets/chevy-colorado.mp4" type="video/mp4">
           </video>
           <button class="play" type="button" aria-label="Play the Colorado Z71 film">
@@ -260,7 +263,7 @@
 
       <figure class="film sf">
         <div class="lift lift--r"><div class="tilt player" data-tilt="7" id="player2" style="--by:-10deg">
-          <video class="player-v" preload="metadata" playsinline poster="assets/chevy-suburban-open.jpg" aria-label="Chevrolet Suburban RST film for Cox Chevrolet">
+          <video class="player-v" preload="none" playsinline data-poster="assets/chevy-suburban-open.jpg" aria-label="Chevrolet Suburban RST film for Cox Chevrolet">
             <source src="assets/chevy-suburban.mp4" type="video/mp4">
           </video>
           <button class="play" type="button" aria-label="Play the Suburban RST film">
@@ -290,7 +293,7 @@
       <figure class="device-rig sf">
         <div class="float float--b">
           <div class="device tilt" data-tilt="10">
-            <div class="device-screen"><img src="assets/work-1.jpg" alt="One Coast Construction: the website and its blueprint-style brand system" loading="lazy" decoding="async"></div>
+            <div class="device-screen"><img src="assets/work-1-800.jpg" srcset="assets/work-1-800.jpg 800w, assets/work-1-1200.jpg 1200w, assets/work-1.jpg 1600w" sizes="(max-width:860px) 92vw, 42vw" width="1600" height="900" alt="One Coast Construction: the website and its blueprint-style brand system" loading="lazy" decoding="async"></div>
           </div>
         </div>
         <div class="device-glow" aria-hidden="true"></div>
@@ -303,7 +306,7 @@
       <figure class="device-rig sf">
         <div class="float float--c">
           <div class="device tilt" data-tilt="10">
-            <div class="device-screen"><img src="assets/work-2.jpg" alt="R and J Concessions: the website, three generations of fair food, and the event enquiry flow" loading="lazy" decoding="async"></div>
+            <div class="device-screen"><img src="assets/work-2-800.jpg" srcset="assets/work-2-800.jpg 800w, assets/work-2-1200.jpg 1200w, assets/work-2.jpg 1600w" sizes="(max-width:860px) 92vw, 42vw" width="1600" height="900" alt="R and J Concessions: the website, three generations of fair food, and the event enquiry flow" loading="lazy" decoding="async"></div>
           </div>
         </div>
         <div class="device-glow" aria-hidden="true"></div>
@@ -327,7 +330,7 @@
     <div class="focus-rig sf">
       <div class="glass focus-panel" id="focusPanel" style="--f:0">
         <div class="fp-blur">
-          <img class="fp-img" src="assets/focus.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img class="fp-img" src="assets/focus-960.jpg" srcset="assets/focus-960.jpg 960w, assets/focus.jpg 1600w" sizes="min(920px, 92vw)" width="1600" height="780" alt="" aria-hidden="true" loading="lazy" decoding="async">
           <div class="fp-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         </div>
         <div class="fp-marks">
@@ -375,7 +378,7 @@
 <section class="sec sec--quote" data-bgstop="20.2" data-vf="07 / PROOF">
   <div class="wrap wrap--narrow">
     <figure class="quote sf">
-      <img class="quote-photo" src="assets/proof-bg.jpg" alt="" loading="lazy" decoding="async" aria-hidden="true">
+      <img class="quote-photo" src="assets/proof-bg-640.jpg" srcset="assets/proof-bg-640.jpg 640w, assets/proof-bg.jpg 1024w" sizes="(max-width:720px) 92vw, 780px" width="1024" height="572" alt="" loading="lazy" decoding="async" aria-hidden="true">
       <span class="quote-frost" aria-hidden="true"></span>
       <p class="tag mono">( 07 ) PROOF</p>
       <blockquote><p>Sharp Frame Studios captures the heart of Blu Kouzina through beautiful content and a consistent social presence. Creative, reliable, and always attentive to every detail.</p></blockquote>
@@ -516,8 +519,8 @@
 <footer class="foot" data-vf="11 / SHARP FRAME STUDIOS">
   <div class="wrap">
     <div class="foot-top">
-      <a class="brand" href="#top" aria-label="Back to top"><img class="brand-logo brand-logo--mark" src="assets/mark.webp" alt="" width="360" height="221" loading="lazy" decoding="async"></a>
-      <nav class="foot-nav mono" aria-label="Footer"><!-- hubnav:start --><a class="chip" href="web-design-sarasota/">web design ↗</a><a class="chip" href="seo-sarasota/">seo ↗</a><a class="chip" href="framer-web-design/">framer ↗</a><!-- hubnav:end --><a class="chip" href="#services">services ↗</a><a class="chip" href="#work">work ↗</a><a class="chip" href="#pricing">pricing ↗</a><a class="chip" href="#faq">faq ↗</a><a class="chip" href="#start">start a project ↗</a><a class="chip" href="blog/">blog ↗</a></nav>
+      <a class="brand" href="#top" aria-label="Back to top"><img class="brand-logo brand-logo--mark" src="assets/mark-sm.webp" srcset="assets/mark-sm.webp 160w, assets/mark.webp 360w" sizes="56px" alt="" width="360" height="221" loading="lazy" decoding="async"></a>
+      <nav class="foot-nav mono" aria-label="Footer"><a class="chip" href="#services">services ↗</a><a class="chip" href="#work">work ↗</a><a class="chip" href="#pricing">pricing ↗</a><a class="chip" href="#faq">faq ↗</a><a class="chip" href="#start">start a project ↗</a><a class="chip" href="blog/">blog ↗</a></nav>
     </div>
     <div class="foot-bot mono"><!-- phone:start --><span class="chip"><a href="tel:+19419202086">(941) 920-2086</a></span><!-- phone:end -->
       <span class="chip"><a href="mailto:info@sharpframestudios.com">info@sharpframestudios.com</a></span>
@@ -527,6 +530,6 @@
   </div>
 </footer>
 
-<script src="assets/app.js"></script>
+<script src="assets/app.js" defer></script>
 </body>
 </html>
