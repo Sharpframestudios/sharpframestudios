@@ -54,8 +54,10 @@
 </div>
 
 <!-- ============ THE BACKGROUND FILM: one object, one long take, a stop per section ============ -->
-<video id="bgFilm" class="bg-film" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
-<canvas id="bgCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+<div class="bg-wrap" id="bgWrap" aria-hidden="true">
+  <video id="bgFilm" class="bg-film" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+  <video id="bgFilmRev" class="bg-film bg-film--rev" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+</div>
 
 <!-- ============ THE SIGNATURE: THE VIEWFINDER ============ -->
 <div class="vf" id="vf" aria-hidden="true">
