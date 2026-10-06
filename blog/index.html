@@ -12,10 +12,13 @@
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="../assets/journal-bg.jpg" fetchpriority="high">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@500,700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <link rel="stylesheet" href="blog.css">
+<link rel="stylesheet" href="journal.css">
+<script src="journal.js"></script>
 <!-- seo:start -->
 <link rel="canonical" href="https://sharpframestudios.com/blog/">
 <meta property="og:type" content="website">
@@ -32,8 +35,7 @@
 <!-- seo:end --></head>
 <body class="ready blog-body">
 <a class="skip" href="#main">Skip to content</a>
-<div class="env" aria-hidden="true"><div class="orb orb--1"></div><div class="orb orb--2"></div><div class="orb orb--3"></div><div class="env-grain"></div></div>
-<nav class="nav is-stuck" aria-label="Main">
+<nav class="nav" aria-label="Main">
   <a class="brand" href="../" aria-label="Sharp Frame Studios, home"><img class="brand-logo brand-logo--mark" src="../assets/mark.webp" alt="" width="360" height="221" decoding="async"></a>
   <div class="nav-links mono">
     <a href="../#services">services <i>↗</i></a>
@@ -42,17 +44,28 @@
     <a class="nav-cta" href="../#start">start a project <i>↗</i></a>
   </div>
 </nav>
-<main id="main" tabindex="-1" class="blog-main">
-<section class="blog-head">
-  <div class="wrap">
-    <p class="kicker mono">( JOURNAL )</p>
-    <h1 class="post-h">Ideas, insights, <em class="it">and</em> practical notes.</h1>
-    <p class="lede">A collection of thinking around websites, digital presence, creative direction, and building brands that perform.</p>
+<main id="main" tabindex="-1" class="blog-main jr-main">
+<section class="jr-stage" id="jrStage" aria-labelledby="jrTitle">
+  <div class="jr-film" aria-hidden="true">
+    <video class="jr-video" id="jrVideo" autoplay muted loop playsinline preload="auto" poster="../assets/journal-bg.jpg" tabindex="-1" aria-hidden="true" disablepictureinpicture disableremoteplayback><source src="../assets/journal-bg.mp4" type="video/mp4"></video>
+    <div class="env-grain jr-grain"></div>
   </div>
-</section>
-<section class="blog-list">
-  <div class="wrap">
-    <div class="posts" id="posts" aria-live="polite"><!-- posts:start -->
+  <div class="jr-copy" id="jrCopy">
+    <p class="mono jr-chip">( SFS · JOURNAL )</p>
+    <h1 class="jr-h" id="jrTitle">Fresh <em class="it">perspectives</em></h1>
+    <p class="jr-lede">Practical notes on websites, local search and social media to help your business grow.</p>
+    <span class="jr-rule" aria-hidden="true"></span>
+    <div class="jr-ctl">
+      <button class="jr-btn" type="button" data-jr="prev" aria-label="Previous article"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M19 12H5.5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="jr-btn" type="button" data-jr="next" aria-label="Next article"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 12h13.5M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="jr-ctl-t">
+        <p class="mono jr-explore">EXPLORE ARTICLES</p>
+        <button class="mono jr-all" type="button" data-jr="all">All articles</button>
+      </div>
+    </div>
+  </div>
+  <div class="jr-rail" id="jrRail">
+    <div class="posts" id="posts"><!-- posts:start -->
 <a class="post-card glass" href="contractor-websites-the-trust-signals-florida-homeowners-look-for.html"><p class="mono post-card-k">( 01 ) Industry Websites &middot; Oct 5, 2026</p><h2 class="h3">Contractor Websites: The Trust Signals Florida Homeowners Look For</h2><p class="p">A homeowner hiring a roofer, a remodeler or an electrician is about to hand over a large amount of money and let strangers work on the most expensive thing they own. Most people feel…</p><span class="mono post-card-go">Read ↗</span></a>
 <a class="post-card glass" href="why-isnt-my-new-website-showing-up-on-google.html"><p class="mono post-card-k">( 02 ) Getting Found &middot; Oct 4, 2026</p><h2 class="h3">Why Isn&#x27;t My New Website Showing Up on Google?</h2><p class="p">You launch a new website, type the business name into Google, and nothing comes up. After weeks of planning and a launch day that felt like an event, it is a deflating moment. It is…</p><span class="mono post-card-go">Read ↗</span></a>
 <a class="post-card glass" href="how-to-run-social-media-for-a-restaurant-a-weekly-routine.html"><p class="mono post-card-k">( 03 ) Social Media &middot; Oct 3, 2026</p><h2 class="h3">How to Run Social Media for a Restaurant: A Weekly Routine</h2><p class="p">A restaurant owner or manager usually has the least spare time of any small business owner. The kitchen runs on a clock, the dining room runs on people, and social media competes with…</p><span class="mono post-card-go">Read ↗</span></a>
@@ -108,7 +121,7 @@
 <a class="post-card glass" href="web-design-in-sarasota-what-local-businesses-need-to-win-online-in-2026.html"><p class="mono post-card-k">( 53 ) Website Design &middot; Aug 15, 2026</p><h2 class="h3">Web Design in Sarasota: What Local Businesses Need to Win Online in 2026</h2><p class="p">Sarasota is not a single-industry town. The county economic development office lists healthcare, manufacturing, information technology, insurance, hospitality and logistics among its…</p><span class="mono post-card-go">Read ↗</span></a>
 <a class="post-card glass" href="why-your-website-is-still-your-most-important-digital-asset.html"><p class="mono post-card-k">( 54 ) Website Strategy &middot; Jul 20, 2026</p><h2 class="h3">Why Your Website Is Still Your Most Important Digital Asset</h2><p class="p">A website is often the first place a potential customer evaluates your business. Clear structure, strong visual direction, and useful information help establish credibility before the first…</p><span class="mono post-card-go">Read ↗</span></a>
 <!-- posts:end --></div>
-    </div>
+  </div>
 </section>
 </main>
 <footer class="foot">
