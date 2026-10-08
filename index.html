@@ -24,9 +24,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="assets/hero-poster.jpg" fetchpriority="high">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/sfs-kit.css">
+<link rel="stylesheet" href="assets/sfs-work.css">
+<link rel="stylesheet" href="assets/sec-focus.css">
+<link rel="stylesheet" href="assets/sec-proof.css">
+<link rel="stylesheet" href="assets/sfs-guide.css">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@500,700&display=swap" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@500,700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap"></noscript>
+<script src="assets/sfs-kit.js" defer></script>
+<script src="assets/sfs-work.js" defer></script>
+<script src="assets/sec-focus.js" defer></script>
+<script src="assets/sec-proof.js" defer></script>
 <!-- seo:start -->
 <link rel="canonical" href="https://sharpframestudios.com/">
 <meta property="og:type" content="website">
@@ -71,18 +80,25 @@
   <div class="vf-read vf-read--br"><span id="vfIndex">00</span><span class="vf-sep">/</span><span id="vfLabel">HERO</span></div>
 </div>
 
-<!-- ============ NAV ============ -->
-<nav class="nav" id="nav" aria-label="Main">
-  <a class="brand" href="#top" aria-label="Sharp Frame Studios, back to top">
-    <img class="brand-logo brand-logo--mark" src="assets/mark-sm.webp" srcset="assets/mark-sm.webp 160w, assets/mark.webp 360w" sizes="56px" alt="" width="360" height="221" decoding="async">
-    
-  </a>
-  <div class="nav-links mono">
-    <a href="#services">services <i>↗</i></a>
-    <a href="#work">work <i>↗</i></a>
-    <a href="#pricing">pricing <i>↗</i></a>
-    <a href="#faq">faq <i>↗</i></a>
-    <a class="nav-cta" href="#start">start a project <i>↗</i></a>
+<!-- ============ NAV: the logo, the MENU control and its panel. Look and behaviour: assets/sfs-kit.css, sfs-kit.js ============ -->
+<nav class="menu-root" aria-label="Main">
+  <div class="nav nav--menu" id="nav">
+    <a class="brand" href="#top" aria-label="Sharp Frame Studios, back to top">
+      <img class="brand-logo brand-logo--mark" src="assets/mark-sm.webp" srcset="assets/mark-sm.webp 160w, assets/mark.webp 360w" sizes="56px" alt="" width="360" height="221" decoding="async">
+    </a>
+  </div>
+  <!-- a sibling of the bar, never inside it: the stuck bar is blurred, and a blurred panel inside a blurred box blurs nothing -->
+  <div class="menu" id="menu">
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuPanel"><span class="dx">MENU</span><svg class="menu-chev" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+    <div class="menu-panel" id="menuPanel">
+      <ul class="menu-list">
+        <li><a class="menu-a" href="#services"><span class="menu-n" aria-hidden="true">01</span><span class="dx">services</span><i aria-hidden="true">↗</i></a></li>
+        <li><a class="menu-a" href="#work"><span class="menu-n" aria-hidden="true">02</span><span class="dx">work</span><i aria-hidden="true">↗</i></a></li>
+        <li><a class="menu-a" href="#pricing"><span class="menu-n" aria-hidden="true">03</span><span class="dx">pricing</span><i aria-hidden="true">↗</i></a></li>
+        <li><a class="menu-a" href="blog/"><span class="menu-n" aria-hidden="true">04</span><span class="dx">blog</span><i aria-hidden="true">↗</i></a></li>
+        <li><a class="menu-a menu-a--cta" href="#start"><span class="dx">start a project</span><i aria-hidden="true">↗</i></a></li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -193,20 +209,20 @@
       <p class="lede sf">Sharp Frame Studios is an independent studio in Sarasota, Florida. Strategy, website design, development, photography, and film, all handled by one person, start to finish. No handoffs, no account managers, no stock anything.</p>
       <ul class="facts-row mono sf">
         <li><b>1:1</b>direct partnership</li>
-        <li><b>04</b>core services</li>
+        <li><b>05</b>core services</li>
         <li><b>End to end</b>creative capability</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ============ ( 02 ) SERVICES: three tilting glass cards ============ -->
+<!-- ============ ( 02 ) SERVICES: three tilting glass cards, and one wide card for the AI service under them ============ -->
 <section class="sec sec--services" id="services" data-bgstop="6" data-vf="02 / SERVICES">
   <div class="wrap">
     <div class="sec-head sec-head--split">
       <div>
         <p class="kicker mono sf">( 02 ) WHAT THE STUDIO DOES</p>
-        <h2 class="h2 sf"><span class="dc" data-text="THREE THINGS,"></span> <em class="it">handled</em><br><span class="dc" data-text="// BY ONE PERSON."></span></h2>
+        <h2 class="h2 sf"><span class="dc" data-text="FOUR THINGS,"></span> <em class="it">handled</em><br><span class="dc" data-text="// BY ONE PERSON."></span></h2>
       </div>
       <p class="lede lede--r sf">Website design, development, and creative production built to give ambitious businesses a stronger digital presence.</p>
     </div>
@@ -229,6 +245,21 @@
         <p class="mono card-n">03 <span>SEO + Social</span></p>
         <h3 class="h3">Digital Growth</h3>
         <p class="p">SEO foundations, content strategy, and ongoing social support designed to extend the brand beyond launch and keep the business visible across digital channels.</p>
+      </article></div>
+    </div>
+
+    <!-- the fourth service has a page of its own (ai-agents/). Its own perspective host, so the three above stand exactly as before -->
+    <div class="cards-ai p3d">
+      <div class="lift"><article class="glass card card--wide tilt sf" data-tilt="4" style="--by:0deg">
+        <figure class="card-fig"><img src="assets/ai-card-720.jpg" srcset="assets/ai-card-720.jpg 720w, assets/ai-card-1200.jpg 1200w, assets/ai-card-1600.jpg 1600w" sizes="(max-width:940px) 92vw, 30vw" width="1600" height="900" alt="A ring of chrome strands swirling around a blue core" loading="lazy" decoding="async"></figure>
+        <div class="card-b">
+          <div class="card-t">
+            <p class="mono card-n">04 <span>AI + Automation</span></p>
+            <h3 class="h3">AI Receptionists</h3>
+            <p class="p">24/7 call answering, lead qualification, and appointment booking.</p>
+          </div>
+          <a class="btn btn--line" href="ai-agents/">Explore AI Agents <i>↗</i></a>
+        </div>
       </article></div>
     </div>
   </div>
@@ -283,70 +314,164 @@
   </div>
 </section>
 
-<!-- ============ ( 04 ) WEBSITES: floating 3D devices ============ -->
+<!-- ============ ( 04 ) WEBSITES: four glass project cards in one row. Laid out by assets/sfs-work.css, moved by assets/sfs-work.js ============ -->
 <section class="sec sec--work" id="work" data-bgstop="15.1" data-vf="04 / WEBSITES">
   <div class="wrap">
     <div class="sec-head">
       <p class="kicker mono sf">( 04 ) WEBSITES</p>
       <h2 class="h2 sf"><span class="dc" data-text="BUILT TO BE"></span> <em class="it">seen.</em></h2>
     </div>
+  </div>
 
-    <div class="devices p3d">
-      <figure class="device-rig sf">
-        <div class="float float--b">
-          <div class="device tilt" data-tilt="10">
-            <div class="device-screen"><img src="assets/work-1-800.jpg" srcset="assets/work-1-800.jpg 800w, assets/work-1-1200.jpg 1200w, assets/work-1.jpg 1600w" sizes="(max-width:860px) 92vw, 42vw" width="1600" height="900" alt="One Coast Construction: the website and its blueprint-style brand system" loading="lazy" decoding="async"></div>
-          </div>
+  <div class="wk-stage" id="wkStage">
+    <ol class="wk-row" id="wkRow" aria-label="Websites built by the studio">
+      <li class="wk-slot">
+        <div class="wk-float">
+          <article class="wk-card sf" data-wk="one-coast">
+            <div class="wk-view"><img src="assets/work-1-800.jpg" srcset="assets/work-1-800.jpg 800w, assets/work-1-1200.jpg 1200w, assets/work-1.jpg 1600w" sizes="(max-width:767px) 82vw, (max-width:1023px) 56vw, 27.4vw" width="1600" height="900" alt="One Coast Construction: the website and its blueprint-style brand system" loading="lazy" decoding="async"></div>
+            <div class="wk-label"><div class="wk-label-in">
+              <span class="wk-t">One Coast Construction</span><i class="wk-go" aria-hidden="true">↗</i>
+              <span class="wk-c"><span class="wk-pre">Website / </span>Florida general contractor</span>
+            </div></div>
+            <span class="wk-sheen" aria-hidden="true"></span>
+            <button class="wk-hit" type="button" aria-haspopup="dialog" aria-label="Open project 01, One Coast Construction, website for a Florida general contractor"></button>
+          </article>
         </div>
-        <div class="device-glow" aria-hidden="true"></div>
-        <figcaption class="film-cap">
-          <span class="h3">One Coast Construction</span>
-          <span class="mono">Website / Florida general contractor</span>
-        </figcaption>
-      </figure>
+        <div class="wk-refl sf" aria-hidden="true"><img src="assets/work-1-800.jpg" srcset="assets/work-1-800.jpg 800w, assets/work-1-1200.jpg 1200w, assets/work-1.jpg 1600w" sizes="(max-width:767px) 82vw, (max-width:1023px) 56vw, 27.4vw" width="1600" height="900" alt="" loading="lazy" decoding="async"></div>
+      </li>
 
-      <figure class="device-rig sf">
-        <div class="float float--c">
-          <div class="device tilt" data-tilt="10">
-            <div class="device-screen"><img src="assets/work-2-800.jpg" srcset="assets/work-2-800.jpg 800w, assets/work-2-1200.jpg 1200w, assets/work-2.jpg 1600w" sizes="(max-width:860px) 92vw, 42vw" width="1600" height="900" alt="R and J Concessions: the website, three generations of fair food, and the event enquiry flow" loading="lazy" decoding="async"></div>
-          </div>
+      <li class="wk-slot">
+        <div class="wk-float">
+          <article class="wk-card sf" data-wk="rj">
+            <div class="wk-view"><img src="assets/work-2-800.jpg" srcset="assets/work-2-800.jpg 800w, assets/work-2-1200.jpg 1200w, assets/work-2.jpg 1600w" sizes="(max-width:767px) 82vw, (max-width:1023px) 56vw, 27.4vw" width="1600" height="900" alt="R and J Concessions: the website, three generations of fair food, and the event enquiry flow" loading="lazy" decoding="async"></div>
+            <div class="wk-label"><div class="wk-label-in">
+              <span class="wk-t">R&amp;J Concessions</span><i class="wk-go" aria-hidden="true">↗</i>
+              <span class="wk-c"><span class="wk-pre">Website / </span>Fairs and events, North America</span>
+            </div></div>
+            <span class="wk-sheen" aria-hidden="true"></span>
+            <button class="wk-hit" type="button" aria-haspopup="dialog" aria-label="Open project 02, R and J Concessions, website for fairs and events in North America"></button>
+          </article>
         </div>
-        <div class="device-glow" aria-hidden="true"></div>
-        <figcaption class="film-cap">
-          <span class="h3">R&amp;J Concessions</span>
-          <span class="mono">Website / Fairs and events, North America</span>
-        </figcaption>
-      </figure>
+        <div class="wk-refl sf" aria-hidden="true"><img src="assets/work-2-800.jpg" srcset="assets/work-2-800.jpg 800w, assets/work-2-1200.jpg 1200w, assets/work-2.jpg 1600w" sizes="(max-width:767px) 82vw, (max-width:1023px) 56vw, 27.4vw" width="1600" height="900" alt="" loading="lazy" decoding="async"></div>
+      </li>
+
+      <li class="wk-slot">
+        <div class="wk-float">
+          <article class="wk-card sf" data-wk="platinum-stay">
+            <div class="wk-view"><img src="assets/work-3-800.jpg" srcset="assets/work-3-800.jpg 800w, assets/work-3-1200.jpg 1200w, assets/work-3.jpg 1558w, assets/work-3-2400.jpg 2400w, assets/work-3-3200.jpg 3200w" sizes="(max-width:767px) 76vw, (max-width:1023px) 52vw, 25.2vw" width="1558" height="954" alt="Platinum Stay Collections: the vacation rental website for Anna Maria Island, its home page, property list and booking steps" loading="lazy" decoding="async"></div>
+            <div class="wk-label"><div class="wk-label-in">
+              <span class="wk-t">Platinum Stay Collections</span><i class="wk-go" aria-hidden="true">↗</i>
+              <span class="wk-c"><span class="wk-pre">Website / </span>Vacation rentals, Florida</span>
+            </div></div>
+            <span class="wk-sheen" aria-hidden="true"></span>
+            <button class="wk-hit" type="button" aria-haspopup="dialog" aria-label="Open project 03, Platinum Stay Collections, website for vacation rentals in Florida"></button>
+          </article>
+        </div>
+        <div class="wk-refl sf" aria-hidden="true"><img src="assets/work-3-800.jpg" srcset="assets/work-3-800.jpg 800w, assets/work-3-1200.jpg 1200w, assets/work-3.jpg 1558w, assets/work-3-2400.jpg 2400w, assets/work-3-3200.jpg 3200w" sizes="(max-width:767px) 76vw, (max-width:1023px) 52vw, 25.2vw" width="1558" height="954" alt="" loading="lazy" decoding="async"></div>
+      </li>
+
+      <li class="wk-slot">
+        <div class="wk-float">
+          <article class="wk-card sf" data-wk="italy-tours">
+            <div class="wk-view"><img src="assets/work-4-800.jpg" srcset="assets/work-4-800.jpg 800w, assets/work-4-1200.jpg 1200w, assets/work-4.jpg 1524w, assets/work-4-2400.jpg 2400w, assets/work-4-3200.jpg 3200w" sizes="(max-width:767px) 84vw, (max-width:1023px) 58vw, 28vw" width="1524" height="838" alt="Private Luxury Tours in Italy: the travel website, its destinations map, coast and lake pages and the enquiry panel" loading="lazy" decoding="async"></div>
+            <div class="wk-label"><div class="wk-label-in">
+              <span class="wk-t">Private Luxury Tours in Italy</span><i class="wk-go" aria-hidden="true">↗</i>
+              <span class="wk-c"><span class="wk-pre">Website / </span>Luxury travel, Italy</span>
+            </div></div>
+            <span class="wk-sheen" aria-hidden="true"></span>
+            <button class="wk-hit" type="button" aria-haspopup="dialog" aria-label="Open project 04, Private Luxury Tours in Italy, website for luxury travel in Italy"></button>
+          </article>
+        </div>
+        <div class="wk-refl sf" aria-hidden="true"><img src="assets/work-4-800.jpg" srcset="assets/work-4-800.jpg 800w, assets/work-4-1200.jpg 1200w, assets/work-4.jpg 1524w, assets/work-4-2400.jpg 2400w, assets/work-4-3200.jpg 3200w" sizes="(max-width:767px) 84vw, (max-width:1023px) 58vw, 28vw" width="1524" height="838" alt="" loading="lazy" decoding="async"></div>
+      </li>
+    </ol>
+    <div class="wk-floor" aria-hidden="true"></div>
+    <div class="wk-pager">
+      <button class="wk-pg" id="wkPgPrev" type="button" aria-label="Previous project in the row">←</button>
+      <button class="wk-pg" id="wkPgNext" type="button" aria-label="Next project in the row">→</button>
     </div>
   </div>
 </section>
 
-<!-- ============ ( 05 ) THE FOCUS STRIP: hold to focus ============ -->
-<section class="sec sec--focus" id="focus" data-bgstop="16.4" data-vf="05 / THE DIFFERENCE">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="kicker mono sf">( 05 ) THE DIFFERENCE</p>
-      <h2 class="h2 sf"><span class="dc" data-text="HOLD TO"></span> <em class="it">see</em> <span class="dc" data-text="IT."></span></h2>
-      <p class="lede sf">Most sites are built to look finished. Yours gets built to be understood in four seconds.</p>
-    </div>
-    <div class="focus-rig sf">
-      <div class="glass focus-panel" id="focusPanel" style="--f:0">
-        <div class="fp-blur">
-          <img class="fp-img" src="assets/focus-960.jpg" srcset="assets/focus-960.jpg 960w, assets/focus.jpg 1600w" sizes="min(920px, 92vw)" width="1600" height="780" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          <div class="fp-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<!-- ============ ( 05 ) THE DIFFERENCE: one project, built by the scroll. Look and behaviour: assets/sec-focus.css, sec-focus.js ============ -->
+<section class="sec sec--focus" id="focus" data-bgstop="16.4" data-vf="05 / THE DIFFERENCE" aria-labelledby="ocTitle">
+  <div class="oc-track">
+    <div class="oc-stage">
+      <i class="oc-floor" aria-hidden="true"></i>
+
+      <div class="oc-head p3d">
+        <div class="air oc-air--t">
+          <header class="glass oc-p oc-title" style="--bx:2.4deg;--by:1deg;--bz:-1.8deg">
+            <p class="kicker mono"><span class="dx">( 05 ) THE DIFFERENCE</span></p>
+            <h2 class="h2 oc-h" id="ocTitle"><span class="dx">EVERY DETAIL.</span> <em class="it">With purpose.</em></h2>
+            <p class="oc-lede">Clear positioning. Original imagery. One clear next step.</p>
+          </header>
         </div>
-        <div class="fp-marks">
-          <span class="fp-mark mono" data-at="0.42"><b></b>Clear positioning</span>
-          <span class="fp-mark mono" data-at="0.62"><b></b>Original imagery</span>
-          <span class="fp-mark mono" data-at="0.82"><b></b>One obvious next step</span>
-        </div>
-        <button class="fp-hit" id="fpHit" type="button" aria-label="Press and hold to bring the panel into focus">
-          <span class="fp-label mono" id="fpLabel">Press and hold</span>
-          <span class="fp-meter" aria-hidden="true"><i></i></span>
-        </button>
       </div>
+
+      <div class="oc-rig p3d">
+        <div class="air oc-air--main">
+          <figure class="glass oc-p oc-shot" aria-labelledby="ocCap" data-tilt="1" style="--bx:9deg;--by:-4.5deg;--bz:.4deg">
+            <div class="oc-pic">
+              <img src="assets/one-coast-1254.webp"
+                   srcset="assets/one-coast-836.webp 836w, assets/one-coast-1254.webp 1254w, assets/one-coast-1672.webp 1672w, assets/one-coast-2508.webp 2508w, assets/one-coast-3344.webp 3344w"
+                   sizes="(min-width:1160px) min(59vw, 1240px), min(calc(100vw - 24px), 920px)"
+                   width="1672" height="941" loading="lazy" decoding="async"
+                   alt="The One Coast Construction home page: a blueprint drawing of a storefront behind the headline Build better. Every time., the company logo and a Start a project button.">
+              <span class="oc-marks" aria-hidden="true">
+                <i class="oc-br oc-br--1" style="left:4.5%;top:38.2%;width:51.5%;height:26.7%"></i>
+                <i class="oc-br oc-br--2" style="left:75.5%;top:51.5%;width:20%;height:12.5%"></i>
+                <i class="oc-br oc-br--3" style="left:4.7%;top:82.1%;width:18.3%;height:10.6%"></i>
+                <i class="oc-t" data-t="1" style="left:4.5%;top:42.1%"></i>
+                <i class="oc-t" data-t="2" style="left:78.8%;top:55.9%"></i>
+                <i class="oc-t" data-t="3" style="left:6.6%;top:87.4%"></i>
+                <i class="oc-tab oc-tab--1" data-n="01"></i>
+                <i class="oc-tab oc-tab--2" data-n="02"></i>
+                <i class="oc-tab oc-tab--3" data-n="03"></i>
+              </span>
+            </div>
+          </figure>
+        </div>
+        <div class="oc-glow" aria-hidden="true"></div>
+        <p class="mono oc-cap"><span id="ocCap">One Coast Construction / Website design</span> <a class="oc-live" href="https://encouraging-plum-551816.framer.app/" target="_blank" rel="noopener">View the live site <i aria-hidden="true">↗</i><span class="sr"> (One Coast Construction, opens in a new tab)</span></a></p>
+        <div class="air oc-air--1">
+          <article class="glass oc-p oc-card oc-card--1" data-tilt="3" data-lift="10" style="--bx:1deg;--by:3deg;--bz:2.6deg;--ea:2.4deg">
+            <p class="mono oc-n"><span class="dx">01 / MESSAGE</span></p>
+            <h3 class="h3 oc-ct"><span class="dx">Clear positioning</span></h3>
+            <p class="p oc-cd">What they build. Where they work.</p>
+            <i class="oc-a" data-a="1" aria-hidden="true"></i>
+          </article>
+        </div>
+        <div class="air oc-air--2">
+          <article class="glass oc-p oc-card oc-card--2" data-tilt="3" data-lift="10" style="--bx:1deg;--by:-3deg;--bz:-2.6deg;--ea:-2.4deg">
+            <p class="mono oc-n"><span class="dx">02 / VISUALS</span></p>
+            <h3 class="h3 oc-ct"><span class="dx">Original imagery</span></h3>
+            <p class="p oc-cd">Architecture becomes the visual identity.</p>
+            <i class="oc-a" data-a="2" aria-hidden="true"></i>
+          </article>
+        </div>
+        <div class="air oc-air--3">
+          <article class="glass oc-p oc-card oc-card--3" data-tilt="3" data-lift="10" style="--bx:-1deg;--by:3deg;--bz:-.6deg;--ea:2.4deg">
+            <p class="mono oc-n"><span class="dx">03 / ACTION</span></p>
+            <h3 class="h3 oc-ct"><span class="dx">One clear next step</span></h3>
+            <p class="p oc-cd">Start a project. Easy to find.</p>
+            <i class="oc-a" data-a="3" aria-hidden="true"></i>
+          </article>
+        </div>
+      </div>
+
+      <svg class="oc-lines" aria-hidden="true" focusable="false">
+        <g data-l="1" style="display:none"><line class="oc-lg"></line><line class="oc-lm"></line><line class="oc-lc"></line><circle class="oc-pu" r="2.2"></circle><circle class="oc-dh" r="7.5"></circle><circle class="oc-dc" r="3.2"></circle></g>
+        <g data-l="2" style="display:none"><line class="oc-lg"></line><line class="oc-lm"></line><line class="oc-lc"></line><circle class="oc-pu" r="2.2"></circle><circle class="oc-dh" r="7.5"></circle><circle class="oc-dc" r="3.2"></circle></g>
+        <g data-l="3" style="display:none"><line class="oc-lg"></line><line class="oc-lm"></line><line class="oc-lc"></line><circle class="oc-pu" r="2.2"></circle><circle class="oc-dh" r="7.5"></circle><circle class="oc-dc" r="3.2"></circle></g>
+      </svg>
+
+      <p class="vf-read oc-read oc-read--l" aria-hidden="true"><span class="dx is-on" data-s="go">SCROLL TO EXPLORE ↓</span><span class="dx" data-s="done">EVERY DETAIL CONNECTED</span></p>
+      <p class="vf-read oc-read oc-read--r" aria-hidden="true"><span class="dx is-on" data-s="1">01 / INTRO</span><span class="dx" data-s="2">02 / DETAILS</span><span class="dx" data-s="3">03 / IN FOCUS</span></p>
     </div>
   </div>
+  <!-- a second anchor for the background film, at the section's own time: the pose behind the composition holds until the pinned stage lets go (app.js, bgStopFor). It must stay outside the sticky stage -->
+  <i class="oc-hold" id="focusHold" data-bgstop="16.4" aria-hidden="true"></i>
 </section>
 
 <!-- ============ ( 06 ) PROCESS ============ -->
@@ -376,16 +501,69 @@
   </div>
 </section>
 
-<!-- ============ ( 07 ) PROOF ============ -->
-<section class="sec sec--quote" data-bgstop="20.2" data-vf="07 / PROOF">
-  <div class="wrap wrap--narrow">
-    <figure class="quote sf">
-      <img class="quote-photo" src="assets/proof-bg-640.jpg" srcset="assets/proof-bg-640.jpg 640w, assets/proof-bg.jpg 1024w" sizes="(max-width:720px) 92vw, 780px" width="1024" height="572" alt="" loading="lazy" decoding="async" aria-hidden="true">
-      <span class="quote-frost" aria-hidden="true"></span>
-      <p class="tag mono">( 07 ) PROOF</p>
-      <blockquote><p>Sharp Frame Studios captures the heart of Blu Kouzina through beautiful content and a consistent social presence. Creative, reliable, and always attentive to every detail.</p></blockquote>
-      <figcaption><span class="q-name">Blu Kouzina</span><span class="mono">Client, Sarasota</span></figcaption>
-    </figure>
+<!-- ============ ( 07 ) PROOF: the Optical Focus Reveal. Look: assets/sec-proof.css (the finished state); the one-time sequence: assets/sec-proof.js ============ -->
+<section class="sec sec--quote pf" id="proof" data-bgstop="20.2" data-vf="07 / PROOF">
+  <div class="pf-stage">
+    <!-- the same photograph twice, from one geometry: blurred and graded in the file behind, sharp inside the lens -->
+    <div class="pf-bg" aria-hidden="true">
+      <img class="pf-bg-img" src="assets/proof-blu-backdrop.webp" width="1910" height="1240" alt="" loading="lazy" decoding="async">
+      <div class="pf-atmo"></div>
+    </div>
+    <div class="pf-lens" aria-hidden="true">
+      <i class="pf-caustic"></i><i class="pf-rays"></i><i class="pf-shadow"></i><i class="pf-halo"></i>
+      <i class="pf-wall"></i><i class="pf-wall2"></i><i class="pf-wall3"></i><i class="pf-r1"></i><i class="pf-r2"></i><i class="pf-r3"></i><i class="pf-r4"></i><i class="pf-r5"></i><i class="pf-r6"></i><i class="pf-r7"></i>
+      <div class="pf-eye">
+        <img class="pf-photo" src="assets/proof-blu-1100.webp" srcset="assets/proof-blu-760.webp 760w, assets/proof-blu-1100.webp 1100w, assets/proof-blu-1600.webp 1600w, assets/proof-blu-2200.webp 2200w" sizes="(max-width:720px) 112vw, (max-width:980px) 81vw, 65vw" width="1100" height="1146" alt="" loading="lazy" decoding="async">
+        <i class="pf-bloom"></i><i class="pf-shade"></i>
+        <!-- the iris: eight blades, each turning about its own pivot. Drawn open; generated (review/proof-gen-iris.js), do not edit by hand -->
+        <svg class="pf-iris" viewBox="-500 -500 1000 1000" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="pf-steel" gradientUnits="userSpaceOnUse" x1="15.6" y1="0" x2="445.6" y2="0"><stop offset="0" stop-color="#4a515b"/><stop offset=".03" stop-color="#3a4048"/><stop offset=".14" stop-color="#2e3239"/><stop offset=".4" stop-color="#24282e"/><stop offset="1" stop-color="#14171b"/></linearGradient>
+            <linearGradient id="pf-sheen" gradientUnits="userSpaceOnUse" x1="0" y1="-0.6" x2="0" y2="849.4"><stop offset="0" stop-color="#000" stop-opacity=".24"/><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset=".46" stop-color="#dfe8f6" stop-opacity=".12"/><stop offset=".6" stop-color="#fff" stop-opacity=".02"/><stop offset="1" stop-color="#000" stop-opacity=".34"/></linearGradient>
+            <radialGradient id="pf-brush" gradientUnits="userSpaceOnUse" cx="-276.4" cy="329.4" r="23" spreadMethod="repeat"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".09" stop-color="#fff" stop-opacity=".2"/><stop offset=".17" stop-color="#000" stop-opacity=".16"/><stop offset=".3" stop-color="#fff" stop-opacity=".09"/><stop offset=".43" stop-color="#000" stop-opacity=".2"/><stop offset=".55" stop-color="#fff" stop-opacity=".22"/><stop offset=".64" stop-color="#000" stop-opacity=".08"/><stop offset=".78" stop-color="#fff" stop-opacity=".14"/><stop offset=".9" stop-color="#000" stop-opacity=".17"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+            <radialGradient id="pf-brush2" gradientUnits="userSpaceOnUse" cx="-276.4" cy="329.4" r="37" spreadMethod="repeat"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".12" stop-color="#000" stop-opacity=".15"/><stop offset=".21" stop-color="#fff" stop-opacity=".15"/><stop offset=".36" stop-color="#000" stop-opacity=".1"/><stop offset=".5" stop-color="#fff" stop-opacity=".08"/><stop offset=".66" stop-color="#000" stop-opacity=".18"/><stop offset=".8" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+            <linearGradient id="pf-cast" gradientUnits="userSpaceOnUse" x1="15.6" y1="0" x2="-20.4" y2="0"><stop offset="0" stop-color="#01030a" stop-opacity=".86"/><stop offset=".45" stop-color="#01030a" stop-opacity=".4"/><stop offset="1" stop-color="#01030a" stop-opacity="0"/></linearGradient>
+            <linearGradient id="pf-lip" gradientUnits="userSpaceOnUse" x1="15.6" y1="0" x2="2.6" y2="0"><stop offset="0" stop-color="#01030a" stop-opacity=".5"/><stop offset="1" stop-color="#01030a" stop-opacity="0"/></linearGradient>
+            <linearGradient id="pf-edge" gradientUnits="userSpaceOnUse" x1="0" y1="69.4" x2="0" y2="849.4"><stop offset="0" stop-color="#c5d0de" stop-opacity=".4"/><stop offset=".3" stop-color="#ffffff" stop-opacity="1"/><stop offset=".55" stop-color="#e6eefa" stop-opacity=".92"/><stop offset="1" stop-color="#b9c4d2" stop-opacity=".55"/></linearGradient>
+            <radialGradient id="pf-vig" gradientUnits="userSpaceOnUse" cx="24" cy="12" r="365"><stop offset="0" stop-color="#02040a" stop-opacity="0"/><stop offset=".88" stop-color="#02040a" stop-opacity="0"/><stop offset=".96" stop-color="#02040a" stop-opacity=".2"/><stop offset="1" stop-color="#02040a" stop-opacity=".62"/></radialGradient>
+            <clipPath id="pf-clip"><circle cx="24" cy="12" r="365"/></clipPath>
+            <clipPath id="pf-half"><rect x="0" y="-700" width="700" height="1400" transform="rotate(30)"/></clipPath>
+            <path id="pf-bb" d="M15.6 -770.6H1115.6V1429.4H15.6Z"/>
+            <g id="pf-blade">
+              <path fill="url(#pf-lip)" d="M15.6 208.4V450.3L2.6 444.3V214.4Z"/>
+              <path fill="url(#pf-cast)" d="M15.6 454.3L-20.4 494.3V1429.4H15.6Z"/>
+              <use href="#pf-bb" fill="url(#pf-steel)"/>
+              <use href="#pf-bb" class="pf-br" fill="url(#pf-brush)"/>
+              <use href="#pf-bb" class="pf-br" fill="url(#pf-brush2)"/>
+              <use href="#pf-bb" fill="url(#pf-sheen)"/>
+              <path d="M16.5 -370.6V1429.4" fill="none" stroke="url(#pf-edge)" stroke-width="2.6"/>
+              <path d="M19 -370.6V1429.4" fill="none" stroke="#0a0d13" stroke-opacity=".35" stroke-width="1.4"/>
+            </g>
+          </defs>
+          <g clip-path="url(#pf-clip)">
+            <g transform="translate(30 15)">
+              <g><g transform="rotate(327) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#9aa6b8" fill-opacity="0.104"/></g></g><g transform="rotate(282) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#05070b" fill-opacity="0.127"/></g></g><g transform="rotate(237) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#9aa6b8" fill-opacity="0.253"/></g></g><g transform="rotate(192) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#9aa6b8" fill-opacity="0.131"/></g></g><g transform="rotate(147) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#9aa6b8" fill-opacity="0.245"/></g></g><g transform="rotate(102) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#05070b" fill-opacity="0.135"/></g></g><g transform="rotate(57) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#05070b" fill-opacity="0.083"/></g></g><g transform="rotate(12) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#05070b" fill-opacity="0.200"/></g></g></g>
+              <g clip-path="url(#pf-half)"><g transform="rotate(147) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#9aa6b8" fill-opacity="0.245"/></g></g><g transform="rotate(102) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#05070b" fill-opacity="0.135"/></g></g><g transform="rotate(57) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#05070b" fill-opacity="0.083"/></g></g><g transform="rotate(12) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#05070b" fill-opacity="0.200"/></g></g><g transform="rotate(327) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#9aa6b8" fill-opacity="0.104"/></g></g><g transform="rotate(282) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#05070b" fill-opacity="0.127"/></g></g><g transform="rotate(237) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#9aa6b8" fill-opacity="0.253"/></g></g><g transform="rotate(192) translate(276.4 -329.4)"><g class="pf-bl"><use href="#pf-blade"/><use href="#pf-bb" fill="#9aa6b8" fill-opacity="0.131"/></g></g></g>
+            </g>
+            <circle cx="24" cy="12" r="365" fill="url(#pf-vig)"/>
+          </g>
+        </svg>
+        <i class="pf-dim"></i>
+      </div>
+      <i class="pf-coat pf-coat--4"></i><i class="pf-coat"></i><i class="pf-coat pf-coat--2"></i><i class="pf-coat pf-coat--3"></i>
+      <i class="pf-glass"><i class="pf-glare"></i></i>
+      <i class="pf-spec pf-spec--1"></i><i class="pf-spec pf-spec--2"></i>
+      <i class="pf-glint"></i><i class="pf-glint pf-glint--2"></i>
+      <i class="pf-rim"></i>
+    </div>
+    <div class="pf-float">
+      <figure class="pf-card">
+        <span class="pf-card-glass" aria-hidden="true"></span>
+        <p class="tag mono pf-tag">( 07 ) PROOF</p>
+        <blockquote><p>Sharp Frame Studios captures the heart of Blu Kouzina through beautiful content and a consistent social presence. Creative, reliable, and always attentive to every detail.</p></blockquote>
+        <figcaption><span class="pf-name">Blu Kouzina</span><span class="mono">Client, Sarasota</span></figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -400,6 +578,7 @@
       <div class="toggle sf" role="tablist" aria-label="Pricing type">
         <button class="tg is-on" role="tab" aria-selected="true" aria-controls="p-web" id="tab-web" type="button">Websites</button>
         <button class="tg" role="tab" aria-selected="false" aria-controls="p-social" id="tab-social" type="button">Social</button>
+        <button class="tg" role="tab" aria-selected="false" aria-controls="p-ai" id="tab-ai" type="button">AI Agents</button>
         <span class="tg-pill" aria-hidden="true"></span>
       </div>
     </div>
@@ -459,6 +638,26 @@
         <ul class="inc"><li>Two monthly content sessions</li><li>50 professionally edited photos</li><li>10 short-form videos</li><li>Professional drone footage</li><li>16 scheduled social media posts</li><li>Management of up to three platforms</li><li>Monthly content calendar</li><li>Captions and hashtag research</li><li>Performance reporting</li><li>Priority support</li></ul>
       </article></div>
     </div>
+
+    <!-- the AI tab. The three cards are written by review/render-ai-plans.js from data/ai-plans.json (the AI page shows the
+         same three): edit the data file, not the lines between the two markers. The strip under them belongs to the plans:
+         the marking, the usage sentence (both word for word as in the data file) and the way to the page -->
+    <div class="plans-ai is-hidden" id="p-ai" role="tabpanel" aria-labelledby="tab-ai" hidden>
+      <div class="plans p3d">
+        <!-- ai-plans:start -->
+        <div class="lift"><article class="glass plan aip tilt sf" data-tilt="6" style="--by:9deg;--tz:0px"><div class="aip-top"><span class="lens lens--m" style="--rot:0deg" aria-hidden="true"><i class="lens-r1"></i><i class="lens-iris"></i><i class="lens-spec"></i></span><b class="mono" aria-hidden="true">01</b></div><h3 class="h3">Starter</h3><p class="p plan-d">For everyday call handling.</p><p class="mono aip-from">FROM</p><p class="price"><span class="cur">$</span>299<span class="per">/ month</span></p><p class="aip-setup">Setup from $750</p><ul class="aip-feats"><li>Business FAQ</li><li>Lead capture</li><li>Call summaries</li></ul><a class="btn btn--line btn--full" href="#start" data-interest="ai">Book a demo <i>↗</i></a></article></div>
+        <div class="lift"><article class="glass plan aip plan--pick tilt sf" data-tilt="6" style="--by:0deg;--tz:44px"><div class="aip-top"><span class="lens lens--m" style="--rot:0deg" aria-hidden="true"><i class="lens-r1"></i><i class="lens-iris"></i><i class="lens-spec"></i></span><b class="mono" aria-hidden="true">02</b><span class="mono plan-tag">CONNECTED WORKFLOW</span></div><h3 class="h3">Growth</h3><p class="p plan-d">For a connected booking workflow.</p><p class="mono aip-from">FROM</p><p class="price"><span class="cur">$</span>750<span class="per">/ month</span></p><p class="aip-setup">Setup from $1,500</p><ul class="aip-feats"><li>Lead qualification</li><li>Calendar + CRM</li><li>Monthly optimization</li></ul><a class="btn btn--ink btn--full" href="#start" data-interest="ai">Book a demo <i>↗</i></a></article></div>
+        <div class="lift"><article class="glass plan aip tilt sf" data-tilt="6" style="--by:-9deg;--tz:0px"><div class="aip-top"><span class="lens lens--m" style="--rot:0deg" aria-hidden="true"><i class="lens-r1"></i><i class="lens-iris"></i><i class="lens-spec"></i></span><b class="mono" aria-hidden="true">03</b></div><h3 class="h3">Pro</h3><p class="p plan-d">For teams and multiple locations.</p><p class="mono aip-from">FROM</p><p class="price"><span class="cur">$</span>1,500<span class="per">/ month</span></p><p class="aip-setup">Setup from $3,000</p><ul class="aip-feats"><li>Multiple agents</li><li>Custom routing</li><li>Advanced integrations</li></ul><a class="btn btn--line btn--full" href="#start" data-interest="ai">Let's talk <i>↗</i></a></article></div>
+        <!-- ai-plans:end -->
+      </div>
+      <div class="glass plans-foot sf">
+        <div class="plans-foot-t">
+          <p class="mono plans-note">INDICATIVE LAUNCH PRICING</p>
+          <p class="plans-fine">Plans include a defined minute allowance. Additional usage billed separately.</p>
+        </div>
+        <a class="btn btn--line" href="ai-agents/">Explore AI Agents <i>↗</i></a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -500,7 +699,7 @@
         </div>
         <label class="field"><span class="lb mono">Email<i>*</i></span><input type="email" name="email" autocomplete="email" required></label>
         <label class="field"><span class="lb mono">What is it about?</span>
-          <select name="category"><option>Website Design and Development</option><option>Website Redesign</option><option>Photography and Film</option><option>Social Media</option><option>Brand and Creative Direction</option><option>Other</option></select>
+          <select name="category"><option>Website Design and Development</option><option>Website Redesign</option><option>Photography and Film</option><option>Social Media</option><option>Brand and Creative Direction</option><option data-interest="ai">AI Receptionist &amp; Automation</option><option>Other</option></select>
         </label>
         <label class="field"><span class="lb mono">Message</span><textarea name="message" rows="4" placeholder="Your business, your current site, and what you want to build."></textarea></label>
         <p class="form-err" id="formErr" role="alert" hidden></p>
@@ -532,6 +731,23 @@
   </div>
 </footer>
 
+<!-- ============ ( 04 ) WEBSITES, opened: the layer a project card is pulled out into. One wash, one thin bar. Driven by assets/sfs-work.js ============ -->
+<div class="wk-top" id="wkTop" role="dialog" aria-modal="true" aria-labelledby="wkBarT" aria-describedby="wkBarC" tabindex="-1" hidden>
+  <div class="wk-wash" id="wkWash"></div>
+  <div class="wk-bar" id="wkBar">
+    <div class="wk-bar-info">
+      <span class="wk-bar-n"><span id="wkBarN" aria-hidden="true">01 <b>/ 04</b></span><span class="sr" id="wkBarSr"></span></span>
+      <span class="wk-bar-t" id="wkBarT" aria-live="polite"></span>
+      <span class="wk-bar-c" id="wkBarC"></span>
+    </div>
+    <a class="wk-bt wk-visit" id="wkVisit" target="_blank" rel="noopener noreferrer" hidden><span>Visit website</span> <i aria-hidden="true">↗</i></a>
+    <button class="wk-bt" id="wkPrev" type="button" aria-label="Previous project">←</button>
+    <button class="wk-bt" id="wkNext" type="button" aria-label="Next project">→</button>
+    <button class="wk-bt wk-x" id="wkX" type="button" aria-label="Close project">✕</button>
+  </div>
+</div>
+
 <script src="assets/app.js" defer></script>
+<script src="assets/sfs-guide.js" defer></script>
 </body>
 </html>

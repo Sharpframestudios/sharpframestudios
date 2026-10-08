@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- panels may start hidden only while the kit is alive: .mo goes on before first paint and comes off after 4 s if the kit never
+     reported in. This line stays ABOVE every stylesheet link (a script waits for the stylesheets before it) -->
+<script>(function(d){d.classList.add('mo');setTimeout(function(){if(!d.classList.contains('mo-ready'))d.classList.remove('mo')},4000)})(document.documentElement)</script>
+<title>AI Receptionists, 24/7 | Sharp Frame AI Agents</title>
+<meta name="description" content="24/7 AI receptionists that answer calls, qualify leads, and book appointments. Designed, connected, and managed by Sharp Frame Studios in Sarasota, Florida.">
+<meta name="theme-color" content="#C6CAD0">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%230B0C0E' stroke-width='2.4'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232B7BFF'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- the four faces of the first screen, asked for at once (the same files the two font stylesheets below name).
+     Until they arrive the page stands in fallback faces cut to the same widths (ai-agents.css, FONTS), so nothing moves when they land -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://cdn.fontshare.com/wf/LAFFD4SDUCDVQEXFPDC7C53EQ4ZELWQI/PXCT3G6LO6ICM5I3NTYENYPWJAECAWDD/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/instrumentserif/v5/jizHRFtNs2ka5fXjeivQ4LroWlx-6zAjjH7Motmp5g.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/geist/v5/gyByhwUxId8gMEwcGFWNOITd.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/geistmono/v6/or3nQ6H-1_WfwkMZI_qYFrcdmhHkjko.woff2">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/sfs-kit.css">
+<link rel="stylesheet" href="../assets/ai-agents.css">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@500,700&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@500,700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap"></noscript>
+<script src="../assets/sfs-kit.js" defer></script>
+<script src="../assets/ai-agents.js" defer></script>
+<script src="../assets/ai-core.js" defer></script>
+<!-- seo:start -->
+<link rel="canonical" href="https://sharpframestudios.com/ai-agents/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sharpframestudios.com/ai-agents/">
+<meta property="og:title" content="AI Receptionists, 24/7 | Sharp Frame AI Agents">
+<meta property="og:description" content="Never miss another customer. 24/7 AI receptionists that answer calls, qualify leads, and book appointments.">
+<meta property="og:image" content="https://sharpframestudios.com/assets/ai-card-1200.jpg">
+<meta property="og:site_name" content="Sharp Frame Studios">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Receptionists, 24/7 | Sharp Frame AI Agents">
+<meta name="twitter:description" content="Never miss another customer. 24/7 AI receptionists that answer calls, qualify leads, and book appointments.">
+<meta name="twitter:image" content="https://sharpframestudios.com/assets/ai-card-1200.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Sharp Frame AI Agents","serviceType":"AI receptionist","description":"24/7 AI receptionists that answer calls, qualify leads, and book appointments.","url":"https://sharpframestudios.com/ai-agents/","mainEntityOfPage":{"@type":"WebPage","@id":"https://sharpframestudios.com/ai-agents/"},"image":"https://sharpframestudios.com/assets/ai-card-1200.jpg","provider":{"@type":"ProfessionalService","name":"Sharp Frame Studios","url":"https://sharpframestudios.com/","email":"info@sharpframestudios.com","telephone":"+1-941-920-2086","address":{"@type":"PostalAddress","addressLocality":"Sarasota","addressRegion":"FL","addressCountry":"US"}}}</script>
+<!-- seo:end -->
+</head>
+<body class="ready aa">
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ THE ROOM: a still, soft studio behind everything. The strand scene (assets/ai-core.js) puts its one
+     fixed canvas over it and under the page; nothing on this page depends on either ============ -->
+<div class="aa-room" aria-hidden="true"></div>
+
+<!-- ============ THE VIEWFINDER (the home page's signature; the right chip names the section in view) ============ -->
+<div class="vf" id="vf" aria-hidden="true">
+  <svg class="vf-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path class="vf-c" d="M0,7 L0,0 L7,0"></path>
+    <path class="vf-c" d="M93,0 L100,0 L100,7"></path>
+    <path class="vf-c" d="M100,93 L100,100 L93,100"></path>
+    <path class="vf-c" d="M7,100 L0,100 L0,93"></path>
+  </svg>
+  <div class="vf-read vf-read--bl"><span class="vf-mark">SFS</span><span class="vf-dot"></span><span>AI AGENTS</span></div>
+  <div class="vf-read vf-read--br"><span id="vfIndex">00</span><span class="vf-sep">/</span><span id="vfLabel">ALWAYS ON</span></div>
+</div>
+
+<!-- ============ NAV: the logo, the MENU control and its panel. Look and behaviour: assets/sfs-kit.css, sfs-kit.js.
+     data-stick: no app.js on this page, so the kit sets the bar's stuck state ============ -->
+<nav class="menu-root" aria-label="Main">
+  <div class="nav nav--menu" id="nav" data-stick>
+    <a class="brand" href="../" aria-label="Sharp Frame Studios, home">
+      <img class="brand-logo brand-logo--mark" src="../assets/mark-sm.webp" srcset="../assets/mark-sm.webp 160w, ../assets/mark.webp 360w" sizes="56px" alt="" width="360" height="221" decoding="async">
+    </a>
+  </div>
+  <!-- a sibling of the bar, never inside it: the stuck bar is blurred, and a blurred panel inside a blurred box blurs nothing -->
+  <div class="menu" id="menu">
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menuPanel"><span class="dx">MENU</span><svg class="menu-chev" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+    <div class="menu-panel" id="menuPanel">
+      <ul class="menu-list">
+        <li><a class="menu-a" href="../#services"><span class="menu-n" aria-hidden="true">01</span><span class="dx">services</span><i aria-hidden="true">↗</i></a></li>
+        <li><a class="menu-a" href="../#work"><span class="menu-n" aria-hidden="true">02</span><span class="dx">work</span><i aria-hidden="true">↗</i></a></li>
+        <li><a class="menu-a" href="#pricing"><span class="menu-n" aria-hidden="true">03</span><span class="dx">pricing</span><i aria-hidden="true">↗</i></a></li>
+        <li><a class="menu-a" href="../blog/"><span class="menu-n" aria-hidden="true">04</span><span class="dx">blog</span><i aria-hidden="true">↗</i></a></li>
+        <li><a class="menu-a menu-a--cta" href="#start"><span class="dx">start a project</span><i aria-hidden="true">↗</i></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main id="main" tabindex="-1">
+
+<!-- ============ A. HERO: the text panel left, the voice core right ============
+     [data-core] boxes are empty: they tell the strand scene where a state stands and how large. They never sit
+     inside a panel that tilts or breathes. The <noscript> in a box is the scene's own exported still: it shows
+     without JavaScript, and ai-agents.js puts it in if the scene's script never arrived. -->
+<header class="sec aa-hero" id="top" data-vf="00 / ALWAYS ON">
+  <div class="wrap"><div class="aa-hero-in">
+    <div class="aa-anchor aa-hero-obj" data-core="hero"><noscript><img class="aa-still" src="../assets/ai-core-hero.webp" alt="" width="678" height="745"></noscript></div>
+    <div class="p3d aa-hero-rig">
+      <div class="air"><div class="glass pan aa-panel aa-hero-panel" data-tilt="2.5" style="--bx:.6deg;--by:2.2deg">
+        <p class="kicker mono">SHARP FRAME AI AGENTS</p>
+        <h1 class="aa-h1"><span class="dx">NEVER MISS</span> <em class="it">another</em> <span class="dx">// CUSTOMER.</span></h1>
+        <p class="aa-lede">24/7 AI receptionists that answer calls, qualify leads, and book appointments.</p>
+        <div class="band-cta">
+          <a class="btn btn--ink" href="#start">Request an AI demo <i>↗</i></a>
+          <a class="btn btn--line" href="#start">Book a demo <i>↗</i></a>
+        </div>
+        <p class="mono aa-foot">ANSWER • QUALIFY • BOOK</p>
+      </div></div>
+    </div>
+    <!-- decoration from the reference picture: it states no fact, so it is hidden from assistive technology -->
+    <div class="p3d aa-ready-rig" aria-hidden="true">
+      <div class="air air--b"><div class="glass pan aa-panel aa-ready" style="--by:-3deg;--bz:-.4deg">
+        <p class="mono">AI RECEPTIONIST</p>
+        <p class="mono aa-ready-s"><i class="aa-dot"></i>READY TO ANSWER</p>
+        <svg class="aa-wave aa-wave--sm" width="68" height="36" viewBox="0 0 68 36" focusable="false"><path d="M1 17v2M5 15.5v5M9 12.5v11M13 9v18M17 5v26M21 2v32M25 7v22M29 11.5v13M33 13.5v9M37 9.5v17M41 4v28M45 2v32M49 6v24M53 11v14M57 14.5v7M61 16.5v3M65 17v2"></path></svg>
+      </div></div>
+    </div>
+  </div></div>
+</header>
+
+<!-- ============ B. THE PROBLEM, AND THE DEMO. No recording and no demo number exist: a still waveform, no player, no timer ============ -->
+<section class="sec aa-sec-demo" id="demo" data-vf="01 / HEAR IT">
+  <div class="wrap">
+    <div class="p3d aa-problem-rig">
+      <div class="air air--c"><div class="glass pan aa-panel aa-problem" style="--bx:.8deg;--by:1deg">
+        <i class="aa-dot" aria-hidden="true"></i><p>When you're busy on a job, the next caller still needs an answer.</p>
+      </div></div>
+    </div>
+    <div class="p3d">
+      <div class="air air--d"><div class="glass pan aa-panel aa-demo" data-tilt="1.5" style="--bx:1.2deg">
+        <div class="aa-demo-txt">
+          <p class="kicker mono">( 01 ) HEAR IT FOR YOURSELF</p>
+          <h2 class="aa-h2"><span class="dx">ONE CALL.</span> <em class="it it--line">See what happens.</em></h2>
+          <p class="aa-lede">Try a home-services conversation. Ask a question. Request an appointment.</p>
+          <div class="band-cta"><a class="btn btn--ink" href="#start">Request an AI demo <i>↗</i></a></div>
+        </div>
+        <div class="aa-conv">
+          <p class="mono aa-conv-k">SAMPLE CONVERSATION</p>
+          <div class="aa-wave-row" aria-hidden="true"><svg class="aa-wave" width="640" height="46" viewBox="0 0 640 46" focusable="false"><path d="M1 19v8M6 14.5v17M11 11v24M16 8.5v29M21 9v28M26 7v32M31 3.5v39M36 8v30M41 8v30M46 12v22M51 19v8M56 22v2M61 21.5v3M66 20.5v5M71 20.5v5M76 16.5v13M81 15v16M86 14v18M91 10.5v25M96 12.5v21M101 14.5v17M106 16.5v13M111 20.5v5M116 21.5v3M121 22v2M126 19v8M131 12v22M136 7v32M141 3.5v39M146 7.5v31M151 8v30M156 13.5v19M161 19v8M166 21.5v3M171 21v4M176 21.5v3M181 20.5v5M186 16.5v13M191 14v18M196 13v20M201 13v20M206 12v22M211 12.5v21M216 11.5v23M221 12.5v21M226 12.5v21M231 14.5v17M236 14.5v17M241 15v16M246 17.5v11M251 18.5v9M256 20.5v5M261 21v4M266 21v4M271 22v2M276 19.5v7M281 13.5v19M286 11v24M291 8v30M296 6.5v33M301 12v22M306 19.5v7M311 21.5v3M316 21.5v3M321 21v4M326 19.5v7M331 14v18M336 13v20M341 10.5v25M346 6.5v33M351 5.5v35M356 7.5v31M361 8v30M366 11.5v23M371 11v24M376 14v18M381 16.5v13M386 19.5v7M391 21v4M396 21.5v3M401 21.5v3M406 20v6M411 15v16M416 12.5v21M421 10.5v25M426 11v24M431 9.5v27M436 12v22M441 15.5v15M446 20v6M451 21.5v3M456 20.5v5M461 19v8M466 15v16M471 8.5v29M476 6v34M481 5.5v35M486 5.5v35M491 2.5v41M496 8v30M501 8.5v29M506 9v28M511 14v18M516 19v8M521 21v4M526 20.5v5M531 20.5v5M536 21.5v3M541 19v8M546 11.5v23M551 4v38M556 8v30M561 9v28M566 11v24M571 19v8M576 21v4M581 22v2M586 21v4M591 20v6M596 16v14M601 14.5v17M606 11v24M611 12v22M616 12v22M621 9v28M626 9.5v27M631 10v26M636 11v24"></path></svg></div>
+          <dl class="aa-lines">
+            <div class="aa-line"><dt>Caller:</dt><dd>I'd like to remodel my pool.</dd></div>
+            <div class="aa-line"><dt>Agent:</dt><dd>What area is your property in?</dd></div>
+          </dl>
+          <dl class="aa-fields">
+            <div><dt class="mono">PROJECT</dt><dd>Pool remodel</dd></div>
+            <div><dt class="mono">LOCATION</dt><dd>Sarasota</dd></div>
+          </dl>
+          <p class="mono aa-ill">ILLUSTRATIVE DEMO</p>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ C. HOW IT WORKS: the bundle crosses above the four steps and a blue signal visits them ============ -->
+<section class="sec aa-sec-flow" id="how" data-vf="02 / HOW IT WORKS">
+  <div class="wrap">
+    <div class="p3d aa-flow-head">
+      <div class="air air--e"><div class="glass pan aa-panel" style="--bx:.8deg;--by:1deg">
+        <p class="kicker mono">( 02 ) FROM CALL TO CUSTOMER</p>
+        <h2 class="aa-h2"><span class="dx">EVERY CALL.</span> <em class="it it--line">A clear next step.</em></h2>
+      </div></div>
+    </div>
+    <div class="aa-steps-rig">
+      <div class="aa-anchor aa-flow-band" data-core="flow"><noscript><img class="aa-still" src="../assets/ai-core-flow.webp" alt="" width="1600" height="525" loading="lazy"></noscript></div>
+      <div class="aa-wire" aria-hidden="true"><i></i><i></i><i></i></div>
+      <ol class="aa-steps">
+        <li class="p3d"><div class="air"><article class="glass pan aa-panel aa-step" data-tilt="3" data-lift="12" style="--bx:.6deg;--by:3deg;--i:0">
+          <i class="aa-step-wire" aria-hidden="true"></i>
+          <span class="lens lens--m" style="--rot:0deg" data-core-station="1" aria-hidden="true"><i class="lens-r1"></i><i class="lens-iris"></i><i class="lens-spec"></i></span>
+          <div class="aa-step-body"><p class="mono aa-step-n">01</p><h3 class="aa-step-t">ANSWER</h3><p class="p">Welcome every caller.</p></div>
+        </article></div></li>
+        <li class="p3d"><div class="air air--b"><article class="glass pan aa-panel aa-step" data-tilt="3" data-lift="12" style="--bx:.6deg;--by:1deg;--i:1">
+          <i class="aa-step-wire" aria-hidden="true"></i>
+          <span class="lens lens--m" style="--rot:0deg" data-core-station="2" aria-hidden="true"><i class="lens-r1"></i><i class="lens-iris"></i><i class="lens-spec"></i></span>
+          <div class="aa-step-body"><p class="mono aa-step-n">02</p><h3 class="aa-step-t">QUALIFY</h3><p class="p">Capture the right details.</p></div>
+        </article></div></li>
+        <li class="p3d"><div class="air air--c"><article class="glass pan aa-panel aa-step" data-tilt="3" data-lift="12" style="--bx:.6deg;--by:-1deg;--i:2">
+          <i class="aa-step-wire" aria-hidden="true"></i>
+          <span class="lens lens--m" style="--rot:0deg" data-core-station="3" aria-hidden="true"><i class="lens-r1"></i><i class="lens-iris"></i><i class="lens-spec"></i></span>
+          <div class="aa-step-body"><p class="mono aa-step-n">03</p><h3 class="aa-step-t">BOOK</h3><p class="p">Find the next appointment.</p></div>
+        </article></div></li>
+        <li class="p3d"><div class="air air--d"><article class="glass pan aa-panel aa-step" data-tilt="3" data-lift="12" style="--bx:.6deg;--by:-3deg;--i:3">
+          <i class="aa-step-wire" aria-hidden="true"></i>
+          <span class="lens lens--m" style="--rot:0deg" data-core-station="4" aria-hidden="true"><i class="lens-r1"></i><i class="lens-iris"></i><i class="lens-spec"></i></span>
+          <div class="aa-step-body"><p class="mono aa-step-n">04</p><h3 class="aa-step-t">FOLLOW UP</h3><p class="p">Keep your team informed.</p></div>
+        </article></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ D. INDUSTRIES. The pictures drop in by file name (assets/ai-<name>-720/1200/1600.jpg); a missing file
+     leaves the designed surface of the figure ============ -->
+<section class="sec aa-sec-ind" id="industries" data-vf="03 / INDUSTRIES">
+  <div class="wrap">
+    <div class="p3d aa-ind-head">
+      <div class="air air--e"><div class="glass pan aa-panel" style="--bx:.8deg;--by:-1deg">
+        <p class="kicker mono">( 03 ) BUILT AROUND YOUR BUSINESS</p>
+        <h2 class="aa-h2"><span class="dx">YOUR INDUSTRY.</span> <em class="it">Your workflow.</em></h2>
+      </div></div>
+    </div>
+    <div class="aa-inds">
+      <div class="p3d"><div class="air"><article class="glass pan aa-ind" data-tilt="3" data-lift="14" style="--bx:.5deg;--by:2.6deg;--i:0">
+        <figure class="aa-ind-fig"><img src="../assets/ai-home-services-720.jpg" srcset="../assets/ai-home-services-720.jpg 720w, ../assets/ai-home-services-1200.jpg 1200w, ../assets/ai-home-services-1600.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:980px) 46vw, 30vw" width="1600" height="900" alt="A chrome and glass pavilion beside a still pool" loading="lazy" decoding="async"></figure>
+        <div class="aa-ind-b"><p class="mono aa-ind-k" aria-hidden="true">CAPTURE</p><h3 class="h3">Home Services</h3><p class="p"><span class="aa-nb">Project inquiries /</span> <span class="aa-nb">Consultation requests</span></p></div>
+      </article></div></div>
+      <div class="p3d"><div class="air air--b"><article class="glass pan aa-ind" data-tilt="3" data-lift="14" style="--bx:.5deg;--by:0deg;--tz:14px;--i:1">
+        <figure class="aa-ind-fig"><img src="../assets/ai-automotive-720.jpg" srcset="../assets/ai-automotive-720.jpg 720w, ../assets/ai-automotive-1200.jpg 1200w, ../assets/ai-automotive-1600.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:980px) 46vw, 30vw" width="1600" height="900" alt="The outline of a car drawn in one ribbon of chrome" loading="lazy" decoding="async"></figure>
+        <div class="aa-ind-b"><p class="mono aa-ind-k" aria-hidden="true">CONNECT</p><h3 class="h3">Automotive</h3><p class="p"><span class="aa-nb">Vehicle inquiries /</span> <span class="aa-nb">Service appointments</span></p></div>
+      </article></div></div>
+      <div class="p3d"><div class="air air--d"><article class="glass pan aa-ind" data-tilt="3" data-lift="14" style="--bx:.5deg;--by:-2.6deg;--bz:.3deg;--i:2">
+        <figure class="aa-ind-fig"><img src="../assets/ai-hospitality-720.jpg" srcset="../assets/ai-hospitality-720.jpg 720w, ../assets/ai-hospitality-1200.jpg 1200w, ../assets/ai-hospitality-1600.jpg 1600w" sizes="(max-width:640px) 92vw, (max-width:980px) 46vw, 30vw" width="1600" height="900" alt="A polished chrome serving cloche on a plate" loading="lazy" decoding="async"></figure>
+        <div class="aa-ind-b"><p class="mono aa-ind-k" aria-hidden="true">WELCOME</p><h3 class="h3">Hospitality</h3><p class="p"><span class="aa-nb">Reservation requests /</span> <span class="aa-nb">Guest questions</span></p></div>
+      </article></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ E + F. MANAGED (a window: no blur, so the loop behind it stays sharp) and the integrations strip ============ -->
+<section class="sec aa-sec-managed" id="managed" data-vf="04 / MANAGED">
+  <div class="wrap">
+    <div class="aa-rig aa-rig--managed">
+      <div class="aa-anchor" data-core="loop"><noscript><img class="aa-still" src="../assets/ai-core-loop.webp" alt="" width="752" height="752" loading="lazy"></noscript></div>
+      <div class="p3d">
+        <div class="air air--c"><div class="glass pan aa-panel aa-win aa-managed" data-tilt="1.5" style="--bx:1deg">
+          <div class="aa-managed-txt">
+            <p class="kicker mono">( 04 ) MANAGED BY SHARP FRAME</p>
+            <h2 class="aa-h2"><span class="dx">BUILT.</span> <em class="it it--keep">Tested.</em><br><span class="dx">// IMPROVED.</span></h2>
+            <p class="aa-lede">We design your agent, connect your workflow, and keep refining the experience.</p>
+            <ul class="aa-caps"><li>FAQ handling</li><li>Lead capture</li><li>Call summaries</li><li>Handoff to your team</li><li>Appointment booking</li></ul>
+            <p class="aa-caps-note">What is included depends on your plan and setup.</p>
+          </div>
+          <ul class="aa-orbit mono">
+            <li class="aa-tagchip aa-tagchip--a"><i class="aa-dot" aria-hidden="true"></i>REVIEW CALLS</li>
+            <li class="aa-tagchip aa-tagchip--b"><i class="aa-dot" aria-hidden="true"></i>TEST SCENARIOS</li>
+            <li class="aa-tagchip aa-tagchip--c"><i class="aa-dot" aria-hidden="true"></i>REFINE WORKFLOWS</li>
+          </ul>
+        </div></div>
+      </div>
+    </div>
+    <div class="p3d aa-integr-rig">
+      <div class="air air--b"><div class="glass pan aa-panel aa-integr" data-tilt="1.5" style="--bx:.8deg;--by:1.5deg">
+        <div><h3 class="aa-integr-t">CONNECTED TO YOUR WORKFLOW.</h3><p class="p">Calendar, CRM, email, and SMS workflows configured around your business.</p></div>
+        <ul class="aa-tags mono"><li><i class="aa-dot" aria-hidden="true"></i>Calendar</li><li><i class="aa-dot" aria-hidden="true"></i>CRM</li><li><i class="aa-dot" aria-hidden="true"></i>Email</li><li><i class="aa-dot" aria-hidden="true"></i>SMS</li></ul>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ G. PRICING. The heading is a window too: the rising strands stay sharp behind its right half.
+     The three cards are written by review/render-ai-plans.js from data/ai-plans.json: edit the data file, not the lines
+     between the two markers. Each card stands in a perspective host of its own (see ai-agents.css, "panels") ============ -->
+<section class="sec aa-sec-pricing" id="pricing" data-vf="05 / PRICING">
+  <div class="wrap">
+    <div class="aa-price-rig">
+    <div class="aa-anchor aa-rise" data-core="rise" data-core-cards=".aa-plans .plan"><noscript><picture><source media="(max-width:759px)" srcset="../assets/ai-core-rise-narrow.webp" width="420" height="588"><img class="aa-still" src="../assets/ai-core-rise.webp" alt="" width="1253" height="728" loading="lazy"></picture></noscript></div>
+    <div class="p3d aa-price-head">
+      <div class="air air--e"><div class="glass pan aa-panel aa-win aa-win--head" style="--bx:.8deg;--by:-1deg">
+        <div>
+          <p class="kicker mono">( 05 ) WAYS TO WORK TOGETHER</p>
+          <h2 class="aa-h2"><span class="dx">CLEAR NUMBERS,</span> <em class="it it--keep">before</em><br><span class="dx">// YOU ASK.</span></h2>
+        </div>
+        <p class="mono aa-note">INDICATIVE LAUNCH PRICING</p>
+      </div></div>
+    </div>
+    <div class="plans aa-plans">
+      <!-- ai-plans:start -->
+      <div class="p3d"><div class="air"><article class="glass plan aip pan" data-tilt="3" data-lift="18" style="--bx:.4deg;--by:9deg;--tz:0px"><div class="aip-top"><span class="lens lens--m" style="--rot:0deg" aria-hidden="true"><i class="lens-r1"></i><i class="lens-iris"></i><i class="lens-spec"></i></span><b class="mono" aria-hidden="true">01</b></div><h3 class="h3">Starter</h3><p class="p plan-d">For everyday call handling.</p><p class="mono aip-from">FROM</p><p class="price"><span class="cur">$</span>299<span class="per">/ month</span></p><p class="aip-setup">Setup from $750</p><ul class="aip-feats"><li>Business FAQ</li><li>Lead capture</li><li>Call summaries</li></ul><a class="btn btn--line btn--full" href="#start" data-interest="ai">Book a demo <i>↗</i></a></article></div></div>
+      <div class="p3d"><div class="air"><article class="glass plan aip plan--pick pan" data-tilt="3" data-lift="18" style="--bx:.4deg;--by:0deg;--tz:44px"><div class="aip-top"><span class="lens lens--m" style="--rot:0deg" aria-hidden="true"><i class="lens-r1"></i><i class="lens-iris"></i><i class="lens-spec"></i></span><b class="mono" aria-hidden="true">02</b><span class="mono plan-tag">CONNECTED WORKFLOW</span></div><h3 class="h3">Growth</h3><p class="p plan-d">For a connected booking workflow.</p><p class="mono aip-from">FROM</p><p class="price"><span class="cur">$</span>750<span class="per">/ month</span></p><p class="aip-setup">Setup from $1,500</p><ul class="aip-feats"><li>Lead qualification</li><li>Calendar + CRM</li><li>Monthly optimization</li></ul><a class="btn btn--ink btn--full" href="#start" data-interest="ai">Book a demo <i>↗</i></a></article></div></div>
+      <div class="p3d"><div class="air"><article class="glass plan aip pan" data-tilt="3" data-lift="18" style="--bx:.4deg;--by:-9deg;--tz:0px"><div class="aip-top"><span class="lens lens--m" style="--rot:0deg" aria-hidden="true"><i class="lens-r1"></i><i class="lens-iris"></i><i class="lens-spec"></i></span><b class="mono" aria-hidden="true">03</b></div><h3 class="h3">Pro</h3><p class="p plan-d">For teams and multiple locations.</p><p class="mono aip-from">FROM</p><p class="price"><span class="cur">$</span>1,500<span class="per">/ month</span></p><p class="aip-setup">Setup from $3,000</p><ul class="aip-feats"><li>Multiple agents</li><li>Custom routing</li><li>Advanced integrations</li></ul><a class="btn btn--line btn--full" href="#start" data-interest="ai">Let's talk <i>↗</i></a></article></div></div>
+      <!-- ai-plans:end -->
+    </div>
+    </div>
+    <p class="aa-fine">Plans include a defined minute allowance. Additional usage billed separately.</p>
+  </div>
+</section>
+
+<!-- ============ H. QUESTIONS: one panel, six rows. Each row is a <details>: it opens without the script, which only
+     adds the smooth height ============ -->
+<section class="sec aa-sec-faq" id="faq" data-vf="06 / QUESTIONS">
+  <div class="wrap">
+    <div class="p3d">
+      <div class="air air--b"><div class="glass pan aa-panel aa-faq" style="--bx:.8deg">
+        <h2 class="kicker mono">( 06 ) GOOD QUESTIONS</h2>
+        <div class="faq">
+          <details class="aa-qa"><summary><i class="aa-qa-dot" aria-hidden="true"></i><span>Can I keep my current phone number?</span><span class="aa-qa-x" aria-hidden="true"><i class="qa-x"></i></span></summary><div class="aa-qa-body"><div class="qa-a"><p class="p">Usually, yes. Your number stays where it is, and calls reach the agent through call forwarding or an integration with your phone system. Which route fits is checked during setup.</p></div></div></details>
+          <details class="aa-qa"><summary><i class="aa-qa-dot" aria-hidden="true"></i><span>Can the agent transfer calls to my team?</span><span class="aa-qa-x" aria-hidden="true"><i class="qa-x"></i></span></summary><div class="aa-qa-body"><div class="qa-a"><p class="p">It can, when your plan and setup include it. Transfers follow rules we define together: who takes which calls, at what hours, and what happens when nobody picks up.</p></div></div></details>
+          <details class="aa-qa"><summary><i class="aa-qa-dot" aria-hidden="true"></i><span>Can it book appointments?</span><span class="aa-qa-x" aria-hidden="true"><i class="qa-x"></i></span></summary><div class="aa-qa-body"><div class="qa-a"><p class="p">Yes, when it is connected to your calendar or booking workflow. What it can offer and confirm depends on how that workflow is configured for your business.</p></div></div></details>
+          <details class="aa-qa"><summary><i class="aa-qa-dot" aria-hidden="true"></i><span>How does setup work?</span><span class="aa-qa-x" aria-hidden="true"><i class="qa-x"></i></span></summary><div class="aa-qa-body"><div class="qa-a"><p class="p">We collect your business information, map the call workflows you need, connect the agent to your phone line and tools, and test real scenarios with you before it takes calls.</p></div></div></details>
+          <details class="aa-qa"><summary><i class="aa-qa-dot" aria-hidden="true"></i><span>What happens when the agent needs help?</span><span class="aa-qa-x" aria-hidden="true"><i class="qa-x"></i></span></summary><div class="aa-qa-body"><div class="qa-a"><p class="p">Uncertain cases follow a handoff or fallback defined in advance: a transfer to your team, a message taken for a call back, or a clear next step for the caller.</p></div></div></details>
+          <details class="aa-qa"><summary><i class="aa-qa-dot" aria-hidden="true"></i><span>How is call usage billed?</span><span class="aa-qa-x" aria-hidden="true"><i class="qa-x"></i></span></summary><div class="aa-qa-body"><div class="qa-a"><p class="p">Usage is defined by your final plan. Each plan includes a defined minute allowance, and additional usage is billed separately. The exact terms are agreed before your agent goes live.</p></div></div></details>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ I. CLOSING (a window, the smaller core inside it) AND CONTACT. #start is the form's row: every
+     "demo" button on the page and the menu's last row lead there ============ -->
+<section class="sec aa-sec-close" id="closing" data-vf="07 / START">
+  <div class="wrap">
+    <div class="aa-rig aa-rig--close">
+      <div class="aa-anchor" data-core="close"><noscript><img class="aa-still" src="../assets/ai-core-close.webp" alt="" width="672" height="669" loading="lazy"></noscript></div>
+      <div class="p3d">
+        <div class="air air--d"><div class="glass pan aa-panel aa-win aa-close" data-tilt="2" style="--bx:.8deg;--by:-1.2deg">
+          <div class="aa-close-txt">
+            <h2 class="aa-h2"><span class="dx">YOUR NEXT CALL.</span> <em class="it it--line it--xl">Handled.</em></h2>
+            <p class="aa-lede">Hear the demo. Then let's build your workflow.</p>
+            <div class="band-cta">
+              <a class="btn btn--ink" href="#start">Request an AI demo <i>↗</i></a>
+              <a class="btn btn--line" href="#start">Book a demo <i>↗</i></a>
+            </div>
+          </div>
+          <div class="aa-close-obj" aria-hidden="true"></div>
+        </div></div>
+      </div>
+    </div>
+    <div class="start-rig" id="start">
+      <div class="p3d"><div class="air air--e"><div class="start-side pan" style="--bx:.8deg;--by:1deg">
+        <p class="kicker mono">SHARP FRAME AI AGENTS</p>
+        <p class="lede">Tell us how your phones are answered today. We will reply with a demo time and a first idea for your workflow.</p>
+        <ul class="start-facts mono">
+          <!-- phone:start --><li><span class="sf-k">Phone</span><a href="tel:+19419202086">(941) 920-2086</a></li><!-- phone:end -->
+          <li><span class="sf-k">Email</span><a href="mailto:info@sharpframestudios.com">info@sharpframestudios.com</a></li>
+          <li><span class="sf-k">Reply</span>Within one business day</li>
+          <li><span class="sf-k">Studio</span>Sarasota, Florida</li>
+        </ul>
+      </div></div></div>
+      <div class="p3d"><div class="air air--c"><div class="glass pan form-wrap" style="--bx:1deg">
+        <!-- the kit's handler (form[data-sfs-form]) sends it; action and method are the same address for a visitor without the script -->
+        <form class="form" id="form" data-sfs-form novalidate action="https://formspree.io/f/xjykwgjn" method="post">
+          <div class="row">
+            <label class="field"><span class="lb mono">First name<i>*</i></span><input type="text" name="firstName" autocomplete="given-name" required></label>
+            <label class="field"><span class="lb mono">Last name<i>*</i></span><input type="text" name="lastName" autocomplete="family-name" required></label>
+          </div>
+          <label class="field"><span class="lb mono">Email<i>*</i></span><input type="email" name="email" autocomplete="email" required></label>
+          <label class="field"><span class="lb mono">What is it about?</span>
+            <select name="category"><option selected>AI Receptionist &amp; Automation</option><option>Website Design and Development</option><option>Website Redesign</option><option>Photography and Film</option><option>Social Media</option><option>Brand and Creative Direction</option><option>Other</option></select>
+          </label>
+          <label class="field"><span class="lb mono">Message</span><textarea name="message" rows="4" placeholder="How your phones are answered today."></textarea></label>
+          <p class="form-err" id="formErr" role="alert" hidden></p>
+          <button class="btn btn--ink btn--full btn--lg" type="submit" id="submit">Send it <i>↗</i></button>
+          <p class="mono form-note">Goes straight to my inbox. No list, no automated sequence.</p>
+        </form>
+        <div class="sent" id="sent" hidden>
+          <span class="lens lens--n" style="--rot:0deg" aria-hidden="true"><i class="lens-r1"></i><i class="lens-iris"></i></span>
+          <h3 class="h3">Got it.</h3>
+          <p class="p">I'll reply within one business day.</p>
+        </div>
+      </div></div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot" data-vf="08 / SHARP FRAME STUDIOS">
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="brand" href="#top" aria-label="Back to top"><img class="brand-logo brand-logo--mark" src="../assets/mark-sm.webp" srcset="../assets/mark-sm.webp 160w, ../assets/mark.webp 360w" sizes="56px" alt="" width="360" height="221" loading="lazy" decoding="async"></a>
+      <nav class="foot-nav mono" aria-label="Footer"><a class="chip" href="../#services">services ↗</a><a class="chip" href="../#work">work ↗</a><a class="chip" href="#pricing">pricing ↗</a><a class="chip" href="#faq">faq ↗</a><a class="chip" href="#start">start a project ↗</a><a class="chip" href="../blog/">blog ↗</a></nav>
+    </div>
+    <div class="foot-bot mono">
+      <!-- phone:start --><span class="chip"><a href="tel:+19419202086">(941) 920-2086</a></span><!-- phone:end -->
+      <span class="chip"><a href="mailto:info@sharpframestudios.com">info@sharpframestudios.com</a></span>
+      <span class="chip">Sarasota, Florida</span>
+      <span class="chip">&copy; 2026 Sharp Frame Studios</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
