@@ -32,10 +32,11 @@ DEFAULT_IMAGE = f"{SITE}/assets/hero-ending.jpg"
 SKIP_POSTS = {"_template.html", "index.html"}
 
 # The three hub pages (web-design-sarasota, seo-sarasota, framer-web-design)
-# were removed from the site on Adrian's decision (Sept 27, 2026). Keep this
-# empty: no hub links in posts, no hub chips in footers, no hub URLs in the
+# were removed on Sept 27, 2026. On Oct 19, 2026 Adrian approved ONE new local
+# service page, /web-design-sarasota/ (web design + social media). Keep the
+# other two out; with HUBS empty: no hub links in posts, no hub chips in footers, no hub URLs in the
 # sitemap, and the strippers clean old markers out.
-HUBS = {}
+HUBS = {"web-design-sarasota": "Web Design in Sarasota"}
 
 # Which hub a post feeds, decided by its category.
 HUB_FOR_CATEGORY = {
