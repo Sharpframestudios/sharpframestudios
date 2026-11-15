@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Business Email Not Arriving? SPF, DKIM and DMARC in Plain English | Sharp Frame Studios</title>
+<meta name="description" content="Why is my domain not receiving emails, and why does mail I send land in spam? MX, SPF, DKIM and DMARC records explained in plain terms for small businesses.">
+<meta name="theme-color" content="#C6CAD0">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%230B0C0E' stroke-width='2.4'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%232B7BFF'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@500,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="blog.css">
+<!-- seo:start -->
+<link rel="canonical" href="https://sharpframestudios.com/blog/business-email-not-arriving-spf-dkim-and-dmarc-in-plain-english.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sharpframestudios.com/blog/business-email-not-arriving-spf-dkim-and-dmarc-in-plain-english.html">
+<meta property="og:title" content="Business Email Not Arriving? SPF, DKIM and DMARC in Plain English | Sharp Frame Studios">
+<meta property="og:description" content="Why is my domain not receiving emails, and why does mail I send land in spam? MX, SPF, DKIM and DMARC records explained in plain terms for small businesses.">
+<meta property="og:image" content="https://sharpframestudios.com/assets/hero-ending.jpg">
+<meta property="og:site_name" content="Sharp Frame Studios">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Business Email Not Arriving? SPF, DKIM and DMARC in Plain English | Sharp Frame Studios">
+<meta name="twitter:description" content="Why is my domain not receiving emails, and why does mail I send land in spam? MX, SPF, DKIM and DMARC records explained in plain terms for small businesses.">
+<meta name="twitter:image" content="https://sharpframestudios.com/assets/hero-ending.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Business Email Not Arriving? SPF, DKIM and DMARC in Plain English | Sharp Frame Studios","description":"Why is my domain not receiving emails, and why does mail I send land in spam? MX, SPF, DKIM and DMARC records explained in plain terms for small businesses.","url":"https://sharpframestudios.com/blog/business-email-not-arriving-spf-dkim-and-dmarc-in-plain-english.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://sharpframestudios.com/blog/business-email-not-arriving-spf-dkim-and-dmarc-in-plain-english.html"},"image":"https://sharpframestudios.com/assets/hero-ending.jpg","author":{"@type":"Organization","name":"Sharp Frame Studios","url":"https://sharpframestudios.com/"},"publisher":{"@type":"Organization","name":"Sharp Frame Studios","url":"https://sharpframestudios.com/","logo":{"@type":"ImageObject","url":"https://sharpframestudios.com/assets/mark.webp"}},"inLanguage":"en-US","datePublished":"2026-11-15","dateModified":"2026-11-15","articleSection":"Website Basics"}</script>
+<!-- seo:end --></head>
+<body class="ready blog-body">
+<a class="skip" href="#main">Skip to content</a>
+<div class="env" aria-hidden="true"><div class="orb orb--1"></div><div class="orb orb--2"></div><div class="orb orb--3"></div><div class="env-grain"></div></div>
+<nav class="nav is-stuck" aria-label="Main">
+  <a class="brand" href="../" aria-label="Sharp Frame Studios, home"><img class="brand-logo brand-logo--mark" src="../assets/mark.webp" alt="" width="360" height="221" decoding="async"></a>
+  <div class="nav-links mono">
+    <a href="../#services">services <i>↗</i></a>
+    <a href="../#work">work <i>↗</i></a>
+    <a href="./">blog <i>↗</i></a>
+    <a class="nav-cta" href="../#start">start a project <i>↗</i></a>
+  </div>
+</nav>
+<main id="main" tabindex="-1" class="blog-main">
+<article class="post">
+  <div class="wrap wrap--post">
+    <p class="kicker mono">( WEBSITE BASICS ) Nov 15, 2026</p>
+    <h1 class="post-h">Business Email Not Arriving? SPF, DKIM and DMARC in Plain English</h1>
+    <p class="post-meta mono">By Sharp Frame Studios &middot; <a href="./">Back to the journal ↗</a></p>
+    <section class="post-sec">
+      <h2 class="post-h2"><span class="mono post-n">01</span>Two Problems That Look Like One</h2>
+      <p class="post-p">A bookkeeper in Venice emails an engagement letter and hears nothing for a week. When she finally calls, the client says it never came, and later finds it in a spam folder under a pile of coupons. Across town, a contractor notices that his website&rsquo;s contact form has gone quiet since the new site launched, although the phone still rings.</p>
+      <p class="post-p">Both owners end up typing the same thing into a search box: why is my domain not receiving emails? They have different problems, though. In one case mail sent to the business is not reaching it. In the other, mail the business sends is not reaching other people. The causes and the fixes are separate.</p>
+      <p class="post-p">Both usually come down to a few short text entries called DNS records, which are kept wherever your domain is managed. This post explains four of them in plain terms: MX, SPF, DKIM and DMARC. You do not have to write them yourself. Knowing what each one is for lets you ask the right person the right question.</p>
+    </section>
+    <section class="post-sec">
+      <h2 class="post-h2"><span class="mono post-n">02</span>When Mail Is Not Reaching You: The MX Record</h2>
+      <p class="post-p">Incoming mail depends on one kind of record. Cloudflare&rsquo;s learning center defines it this way: &ldquo;A DNS &lsquo;mail exchange&rsquo; (MX) record directs email to a mail server.&rdquo; Think of it as the delivery address on file for your domain. Each MX record carries a priority number, and Cloudflare explains that the lower value is preferred, with a higher-numbered record acting as a backup.</p>
+      <p class="post-p">MX records rarely break by themselves. They break when something nearby changes: a new website goes live and the domain&rsquo;s records are moved to a different company, or the business switches email providers and the old entries are left in place.</p>
+      <p class="post-p">Google&rsquo;s help page on setting up MX records for Google Workspace, last updated on November 10, 2026, gives a single value, smtp.google.com, with a priority of 1. It tells administrators to remove any other MX records and warns, &ldquo;Your email might not work correctly if you keep old or incorrect MX records.&rdquo; The same page says it can take up to 72 hours for new MX records to be recognized.</p>
+      <p class="post-p">So if incoming mail stopped right after a launch or a provider change, start here. Ask whoever made the change to compare the MX records with your email provider&rsquo;s current setup page. This is also the moment you find out whether anyone knows the login for the domain, which is the subject of our post on <a href="where-to-buy-and-keep-your-business-domain.html">where to buy and keep your business domain</a>. If mail arrives from some people and not from others, the MX record is probably fine, and your own spam folder is the next place to look.</p>
+    </section>
+    <section class="post-sec">
+      <h2 class="post-h2"><span class="mono post-n">03</span>When Your Mail Is Not Reaching Them: Three Records</h2>
+      <p class="post-p">Email was built so that anyone can type any address into the From line. Three records exist to let the receiving mail server check whether a message that claims to be from your domain really is.</p>
+      <p class="post-p">SPF is a list of who may send.</p>
+      <p class="post-p">It names the mail services allowed to send on behalf of your domain, a little like the list of people authorized to sign for a company at the bank. RFC 7208, the technical standard for SPF published in April 2014, says the record is a DNS TXT record that begins with &ldquo;v=spf1.&rdquo; For a domain that sends only through Google Workspace, Google&rsquo;s help page gives the value &ldquo;v=spf1 include:_spf.google.com ~all.&rdquo; For a domain that sends only through Microsoft 365, Microsoft&rsquo;s documentation gives &ldquo;v=spf1 include:spf.protection.outlook.com -all.&rdquo;</p>
+      <p class="post-p">DKIM is a signature.</p>
+      <p class="post-p">Google&rsquo;s help page on DKIM says a private key &ldquo;generates and adds a DKIM signature to each outgoing message.&rdquo; The matching public key sits in your DNS, where the receiving server can look it up and confirm the signature, much as a tamper-evident seal shows that a package was not opened on the way. Google has administrators generate the key in the Admin console and publish it as a TXT record. Microsoft&rsquo;s documentation says DKIM signing for a custom domain in Microsoft 365 &ldquo;requires two CNAME records in the domain.&rdquo;</p>
+      <p class="post-p">DMARC is the instruction.</p>
+      <p class="post-p">Google&rsquo;s help page on setting up DMARC says it &ldquo;tells receiving email servers what action to take on messages&rdquo; that do not pass the checks. The policy has three settings. Under the original DMARC specification, published in March 2015 and since replaced by newer versions, &ldquo;none&rdquo; asks for no specific action, &ldquo;quarantine&rdquo; asks receivers to treat failing mail as suspicious, and &ldquo;reject&rdquo; asks them to refuse it. The record lives at a subdomain named &ldquo;_dmarc&rdquo; and can list an address where receivers send summary reports.</p>
+      <p class="post-p">DMARC also adds a condition that is easy to miss. The domain in the From address has to match a domain that SPF or DKIM validated. The specification calls this identifier alignment, and it is the reason a message can pass a check and still fail DMARC.</p>
+    </section>
+    <section class="post-sec">
+      <h2 class="post-h2"><span class="mono post-n">04</span>Why This Matters More Than It Used To</h2>
+      <p class="post-p">For years these records were optional good practice. The large mailbox providers have since written them into their rules.</p>
+      <p class="post-p">Google&rsquo;s email sender guidelines say that starting February 1, 2024, all senders who send email to Gmail accounts must set up SPF or DKIM for their sending domains. Senders of 5,000 or more messages a day must set up SPF, DKIM and DMARC, and the guidelines note that the DMARC policy can be set to none. On the consequence, the page says that messages that are not authenticated &ldquo;might be marked as spam or rejected with a 5.7.26 error.&rdquo;</p>
+      <p class="post-p">Yahoo&rsquo;s Sender Hub asks the same of everyone: &ldquo;Implement SPF or DKIM at a minimum.&rdquo; For bulk senders it requires both, plus a valid DMARC policy of at least p=none. Microsoft followed. According to a summary by dmarcian, a company that provides DMARC tools, Microsoft&rsquo;s rules for its consumer services outlook.com, hotmail.com and live.com apply to domains sending over 5,000 emails per day, and messages that do not comply have been rejected since May 5, 2025.</p>
+      <p class="post-p">A landscaping company in Lakewood Ranch is not sending 5,000 messages a day. The first rule has no volume threshold, though. It covers a single estimate sent to one customer with a Gmail address. That matters most each fall, when a note to returning winter residents goes out to a long list of personal Gmail and Yahoo addresses.</p>
+    </section>
+    <section class="post-sec">
+      <h2 class="post-h2"><span class="mono post-n">05</span>The Mistakes That Break It</h2>
+      <p class="post-p">In a small business, the records are usually set up correctly once and then undone by something added later. These are the common ways it happens.</p>
+      <ul class="post-list">
+        <li>Two SPF records. A newsletter tool&rsquo;s instructions say to add an SPF record, and someone adds a second one instead of merging it into the first. RFC 7208 states that &ldquo;multiple SPF records are not permitted for the same owner name,&rdquo; and that a check which finds more than one returns a permanent error. Microsoft&rsquo;s documentation says the same thing more simply: &ldquo;only one SPF record is allowed per domain or subdomain.&rdquo;</li>
+        <li>Too many services in one SPF record. RFC 7208 limits to 10 the number of terms in a record that make the receiving server look something up, and says the result is a permanent error if the limit is exceeded. Remove entries for tools you no longer use.</li>
+        <li>The website contact form. Many forms send their notification from the web server, with your own domain in the From line. If that server is not covered by your SPF record and does not sign with DKIM, the notice of a new inquiry can land in your own spam folder. The usual fix is to have the form send through your real email provider or a mail service that has been set up for your domain. Our <a href="contact-page-best-practices.html">contact page guide</a> covers the rest of the form.</li>
+        <li>A tool that sends as you. Email marketing, booking and invoicing services all send messages with your address on them. Each one publishes a setup page with records to add. Until those are in place, its messages are not aligned with your domain. Google&rsquo;s guidelines say that for direct email the domain in the From header &ldquo;must be aligned with either the SPF domain or the DKIM domain.&rdquo;</li>
+        <li>A strict DMARC policy on day one. Google&rsquo;s DMARC page recommends setting the policy to none when you start and changing it to quarantine or reject over time. It also says SPF or DKIM must be turned on first, and to allow 48 hours after setting them up before adding DMARC. Going straight to reject can block your own invoices.</li>
+      </ul>
+    </section>
+    <section class="post-sec">
+      <h2 class="post-h2"><span class="mono post-n">06</span>A Short Check, and What These Records Will Not Do</h2>
+      <p class="post-p">You can run a first test yourself. Send a message from your business address to a personal Gmail account and open it there. Gmail&rsquo;s help page on checking authentication says, &ldquo;If you see a question mark next to the sender&rsquo;s name, the message isn&rsquo;t authenticated.&rdquo; Repeat the test with a message from your contact form and one from your newsletter tool, because each travels a different route.</p>
+      <p class="post-p">The fix belongs to whoever manages your DNS. That may be your web designer, an IT person, or the support desk at your email provider. Four questions will tell you where things stand:</p>
+      <ul class="post-list">
+        <li>Where are our DNS records managed, and who has the login?</li>
+        <li>Is there exactly one SPF record, and does it include every service that sends mail as us?</li>
+        <li>Is DKIM turned on for our email provider and for our newsletter or booking tool?</li>
+        <li>Is there a DMARC record, what is its policy, and who reads the reports?</li>
+      </ul>
+      <p class="post-p">Keep expectations modest. These records prove that a message came from you. They do not make it welcome. Google&rsquo;s guidelines also ask senders to keep the spam rate reported in its Postmaster Tools below 0.3 percent, and that number is set by how recipients react to your mail. Gmail&rsquo;s help page notes that &ldquo;messages that aren&rsquo;t authenticated aren&rsquo;t necessarily spam,&rdquo; and the reverse is also true: an authenticated message can still be filtered. No one can guarantee that every email reaches the inbox.</p>
+      <p class="post-p">If you have not yet moved to an address on your own domain, our comparison of <a href="professional-email-on-your-own-domain-google-workspace-or-microsoft-365.html">Google Workspace and Microsoft 365</a> is the place to begin. If you are planning a new website and want to be sure your email keeps working through the move, you can <a href="../#start">tell us about your project</a>.</p>
+    <!-- hub:start -->
+      <p class="post-p">When you are ready to talk about your own site, the <a href="../web-design-sarasota/">Sarasota web design</a> page covers what is included at each level and what drives the cost.</p>
+    <!-- hub:end --></section>
+    <div class="post-cta glass"><p class="h3">Ready for a website that reflects your business?</p><a class="btn btn--ink" href="../#start">Start a project <i>↗</i></a></div>
+  </div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="brand" href="../" aria-label="Home"><img class="brand-logo brand-logo--mark" src="../assets/mark.webp" alt="" width="360" height="221" loading="lazy" decoding="async"></a>
+      <nav class="foot-nav mono" aria-label="Footer"><!-- hubnav:start --><a class="chip" href="../web-design-sarasota/">web design in sarasota ↗</a><!-- hubnav:end --><a class="chip" href="../#services">services ↗</a><a class="chip" href="../#work">work ↗</a><a class="chip" href="../#pricing">pricing ↗</a><a class="chip" href="../#faq">faq ↗</a><a class="chip" href="../#start">start a project ↗</a><a class="chip" href="./">blog ↗</a></nav>
+    </div>
+    <div class="foot-bot mono"><!-- phone:start --><span class="chip"><a href="tel:+19419202086">(941) 920-2086</a></span><!-- phone:end -->
+      <span class="chip"><a href="mailto:info@sharpframestudios.com">info@sharpframestudios.com</a></span>
+      <span class="chip">Sarasota, Florida</span>
+      <span class="chip">&copy; 2026 Sharp Frame Studios</span>
+    </div>
+  </div>
+</footer>
+<script src="blog.js"></script>
+</body>
+</html>
